@@ -1,0 +1,43 @@
+<h1 class="subway-title">VR管理登录</h1>
+<div class="register">
+    <form id="registerForm">
+        <div class="weui-cells weui-cells-form">
+            <div class="weui-cell">
+                <div class="weui-cell-hd">
+                    <label for="" class="weui-label">用户名</label>
+                </div>
+                <div class="weui-cell-bd weui-cell-primary">
+                    <input type="text" name="username" class="weui-input" ng-model="login.username" placeholder="请输入用户名">
+                </div>
+                <div class="weui-cell-ft" ng-show="login.username == ''">
+                    <i class="weui-icon-warn"></i>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell-hd">
+                    <label for="" class="weui-label">密码</label>
+                </div>
+                <div class="weui-cell-bd weui-cell-primary">
+                    <input type="password" name="password" class="weui-input" ng-model="login.password" placeholder="请输入密码">
+                </div>
+                <div class="weui-cell-ft" ng-show="login.password == ''">
+                    <i class="weui-icon-warn"></i>
+                </div>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <button ng-click="login.login()" class="weui-btn weui-btn_primary">登录</button>
+        </div>
+    </form>
+</div>
+
+<div ng-show="login.showError">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">登录错误</strong></div>
+        <div class="weui-dialog__bd">{{login.errorMessage}}</div>
+        <div class="weui-dialog__ft">
+            <a ng-click="login.showError=false;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
+        </div>
+    </div>
+</div>

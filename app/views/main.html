@@ -1,23 +1,40 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
+<div class="weui-tab">
+  <div class="weui-navbar">
+    <div class="weui-navbar__item weui-bar__item_on">
+      未回收
+      <span class="weui-badge">43</span>
+    </div>
+    <div class="weui-navbar__item">
+      未使用
+      <span class="weui-badge badge-gray">43</span>
+    </div>
+    <div class="weui-navbar__item">
+      使用中
+      <span class="weui-badge badge-gray">43</span>
+    </div>
+    <div class="weui-navbar__item">
+      已回收
+      <span class="weui-badge badge-gray">100+</span>
+    </div>
+  </div>
+  <!--暂没看懂这个怎么用 有空了再集成-->
+  <div class="weui-tab__panel">
+    <!--<ul class="list-group list-group-table" pull-to-refresh="onReload()">-->
+      <!--<li class="list-group-item" ng-repeat="state in states" ng-bind="state"></li>-->
+    <!--</ul>-->
+  </div>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+  <div class="weui-cells__title">未回收</div>
+  <div class="weui-cells">
+    <div class="weui-cell" ng-repeat="order in orders">
+      <div class="weui-cell__hd">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII=" alt="" style="width:20px;margin-right:5px;display:block">
+      </div>
+      <div class="weui-cell__bd">
+        <p>标题文字</p>
+      </div>
+      <div class="weui-cell__ft">说明文字</div>
+    </div>
+  </div>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
 </div>
