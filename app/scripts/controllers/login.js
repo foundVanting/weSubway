@@ -54,7 +54,7 @@ function LoginCtrl($cookies, $location, loginService) {
             return;
         }
 
-        $cookies.put("user", user);
+        $cookies.putObject("user", user);
         if (angular.isNull(user.id)) {
             showError(msg);
             return;

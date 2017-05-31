@@ -12,14 +12,12 @@ angular.module('newsubwayApp')
 MainCtrl.$injector = ['$cookies', '$location', 'mainService'];
 function MainCtrl($cookies, $location, mainService) {
     var vm = this;
-    vm.uid =8;
+    vm.uid =$cookies.getObject("user").id;
     vm.status ='0';
     vm.orders = getOrders;
     console.log('init vm ok');
-    console.log($cookies.get("user"));
-
-
-
+    console.log(uid);
+    getOrders();
 
     function getOrders() {
         console.log('getOrders function');
