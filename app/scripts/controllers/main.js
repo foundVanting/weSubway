@@ -16,7 +16,7 @@ function MainCtrl($cookies, $location, mainService) {
     vm.status ='0';
     vm.orders = getOrders;
     console.log('init vm ok');
-    console.log(uid);
+    console.log(vm.uid);
     getOrders();
 
     function getOrders() {

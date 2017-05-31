@@ -8,7 +8,7 @@
  * Service in the newsubwayApp.
  */
 angular.module('newsubwayApp')
-  .service('mainService', function () {
+  .service('mainService', function ($http) {
       this.inject=["$http"];
 
       var service = {
