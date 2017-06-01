@@ -12,8 +12,8 @@ angular.module('newsubwayApp')
         $http.post(
             Config.weChat_config, {url: $location.$$absUrl})
         .then(function(res){
-            console.log(res);return
-            $window.wx.config(res.config)
+            console.log(res);
+            $window.wx.config(res.data);
             })
     })
 
