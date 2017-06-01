@@ -8,15 +8,32 @@
  * Controller of the newsubwayApp
  */
 angular.module('newsubwayApp')
+//     .run(function($http,$window,$location){
+//     $http.post(
+//         Config.weChat_config, {url: $location.$$absUrl})
+//         .then(function(res){
+//             console.log(res);
+//             wx.config(res.data);
+//         })
+// })
   .controller('LoginCtrl',LoginCtrl);
-LoginCtrl.$injector = ['$cookies', '$location', 'loginService'];
-function LoginCtrl($cookies, $location, loginService) {
+LoginCtrl.$injector = ['$cookies', '$location', 'loginService','$http'];
+function LoginCtrl($cookies, $location, loginService,$http) {
     var vm = this;
 
     // init data
     vm.username = '';
     vm.password = '';
     vm.login = login;
+    wechatConfig();
+    function wechatConfig() {
+        $http.post(
+            Config.weChat_config, {url: $location.$$absUrl})
+            .then(function(res){
+                console.log(res);
+                wx.config(res.data);
+            })
+    }
 
 
 
@@ -60,7 +77,7 @@ function LoginCtrl($cookies, $location, loginService) {
             return;
         }
         // window.location=Config.url_prefix+"/user/"+user.id+"/wechat";
-        $location.path('/');
+        $location.path('/unlock');
 
     }
     function weChatLoginComplete(response) {
