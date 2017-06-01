@@ -74,7 +74,7 @@ Config.url_prefix = "http://u.zan-xing.com/api/v1";
 Config.login_url = Config.url_prefix + "/admin/login";
 Config.order_url = Config.url_prefix + "/orders";
 Config.qrcode_url = Config.url_prefix + "/qrcode";
-Config.weChat_config = Config.url_prefix + "/wechat/cofig";
+Config.weChat_config = Config.url_prefix + "/wechat/config";
 
 
 var Constants = {};
