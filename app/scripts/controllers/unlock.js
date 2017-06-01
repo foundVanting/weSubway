@@ -7,7 +7,8 @@
  * # UnlockCtrl
  * Controller of the newsubwayApp
  */
-angular.module('newsubwayApp').controller('UnlockCtrl', ['$scope','$cookies','unlockService','$window',function ($scope,$cookies, unlockService,$window) {
+angular.module('newsubwayApp')
+    .controller('UnlockCtrl', ['$scope','$cookies','unlockService','$window',function ($scope,$cookies, unlockService,$window) {
     $scope.user=$cookies.getObject("user");
     $scope.companyId=12;
     $scope.equipNumber='';
@@ -19,7 +20,9 @@ angular.module('newsubwayApp').controller('UnlockCtrl', ['$scope','$cookies','un
     $scope.chooseImage = chooseImage;
 
     function setEquipNumber(value) {
-        $scope.equipNumber=value;
+        $scope.$apply(function () {
+            $scope.equipNumber=value;
+        });
     }
 
     function scanQrCode() {
@@ -29,6 +32,7 @@ angular.module('newsubwayApp').controller('UnlockCtrl', ['$scope','$cookies','un
             success: function (res) {
                 console.log(res);
                 var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                alert(result)
                 setEquipNumber(result.split('_')[2])
             }
         })
