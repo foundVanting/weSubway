@@ -9,23 +9,17 @@
  */
 angular.module('newsubwayApp')
   .controller('MainCtrl', MainCtrl);
-MainCtrl.$injector = ['$cookies', '$location', 'mainService'];
-function MainCtrl($cookies, $location, mainService) {
-    var vm = this;
-    vm.uid =$cookies.getObject("user").id;
-    vm.status ='0';
-    vm.orders = getOrders;
-    console.log('init vm ok');
-    console.log(vm.uid);
+MainCtrl.$injector = ['$scope','$cookies', 'mainService'];
+function MainCtrl($scope,$cookies, mainService) {
+    $scope.uid = $cookies.getObject("user").id;
+    $scope.status =3;
+    $scope.changeStatus = changeStatus;
     getOrders();
-
     function getOrders() {
-        console.log('getOrders function');
-        if (angular.isNull(vm.uid) || angular.isNull(vm.status)) {
+        if (angular.isNull($scope.uid) || angular.isNull($scope.status)) {
             return showError('参数错误');
         }
-        console.log('order before')
-        mainService.orders(vm.uid,vm.status)
+        mainService.orders($scope.uid,$scope.status)
             .then(ordersComplete)
             .catch(ordersFailed);
     }
@@ -46,14 +40,21 @@ function MainCtrl($cookies, $location, mainService) {
         if (pagination.total==0){
             showError('暂无数据');
         }
-       return pagination.data;
+        $scope.total = pagination.total
+        $scope.orders= pagination.data;
+        console.log($scope)
     }
     function ordersFailed(error) {
         console.log(error);
         showError(error.statusText);
     }
     function showError(msg) {
-        vm.showError = true;
-        vm.errorMessage = msg;
+        $scope.showError = true;
+        $scope.errorMessage = msg;
+    }
+    function changeStatus(status) {
+        // alert(status)
+        $scope.status= status;
+        getOrders();
     }
 }

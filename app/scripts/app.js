@@ -43,7 +43,8 @@ angular
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
-        controllerAs: 'main'
+        controllerAs: 'main',
+        resolve:resolver(true)
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -55,6 +56,12 @@ angular
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
+      .when('/unlock', {
+        templateUrl: 'views/unlock.html',
+        controller: 'UnlockCtrl',
+        controllerAs: 'unlock',
+        resolve:resolver(true)
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -65,13 +72,15 @@ var Config = {};
 Config.url_prefix = "http://u.zan-xing.com/api/v1";
 // Config.url_prefix = "http://www.blog.com/api/v1";
 Config.login_url = Config.url_prefix + "/admin/login";
-Config.order_url = Config.url_prefix + "/order";
+Config.order_url = Config.url_prefix + "/orders";
+Config.qrcode_url = Config.url_prefix + "/qrcode";
+Config.weChat_config = Config.url_prefix + "/wechat/cofig";
 
 
 var Constants = {};
 Constants.error_unknown = "未知错误";
 // function
 angular.isNull = function function_name(val) {
-    return angular.isUndefined(val) || val === null || val == '';
+    return angular.isUndefined(val) || val === null || val === '';
 }
 

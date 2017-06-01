@@ -18,11 +18,7 @@ angular.module('newsubwayApp')
 
     function orders(uid,status) {
       console.log('get orders server');
-        return $http.get(
-            Config.order_url, {
-                user_id: uid,
-                status: status
-            });
+         return $http.get(Config.order_url, {params:{"user_id": uid, "status": status}});
     }
     // AngularJS will instantiate a singleton by calling "new" on this function
   });

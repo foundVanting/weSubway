@@ -1,0 +1,70 @@
+<div class="page input js_show">
+    <div class="weui-cells__title">输入设备号</div>
+    <div class="weui-cells weui-cells_form">
+
+        <div class="weui-cell weui-cell_vcode">
+            <div class="weui-cell__hd">
+                <label class="weui-label">设备号</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" placeholder="输入设备号" ng-model="equipNumber" >
+            </div>
+            <div class="weui-cell__ft">
+                <button class="weui-vcode-btn">扫码</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="weui-cells__title">时长选择</div>
+    <div class="weui-cells weui-cells_radio">
+        <label class="weui-cell weui-check__label" for="{{goods.id}}" ng-repeat="goods in goodsList">
+            <div class="weui-cell__bd">
+                <p>{{goods.body}}</p>
+            </div>
+            <div class="weui-cell__ft">
+                <input id="{{goods.id}}" class="weui-check" name="radio1" type="radio" ng-click="setGoodsId(goods.id)">
+                <span class="weui-icon-checked"></span>
+            </div>
+        </label>
+
+    </div>
+    <div class="weui-cells__title">车票或者其他凭证</div>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">凭证</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input"  placeholder="车票或者其他" ng-model="certificate">
+            </div>
+            <div class="weui-cell__ft">
+                <button class="weui-vcode-btn">拍照</button>
+            </div>
+        </div>
+    </div>
+    <div class="page article js_show" ng-show="QrCodeImage">
+        <div class="page__hd">
+            <h1 class="page__title">
+                <img src="{{QrCodeImage}}" >
+            </h1>
+            <p class="page__desc"></p>
+        </div>
+    </div>
+    <div class="page button js_show">
+        <div class="page__bd page__bd_spacing">
+              <a class="weui-btn weui-btn_primary"  ng-click="getQrCode()">确定</a>
+        </div>
+    </div>
+
+    <div ng-show="showError">
+        <div class="weui-mask"></div>
+        <div class="weui-dialog">
+            <div class="weui-dialog__hd"><strong class="weui-dialog__title">错误</strong></div>
+            <div class="weui-dialog__bd">{{errorMessage}}</div>
+            <div class="weui-dialog__ft">
+                <a ng-click="showError=false;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
+            </div>
+        </div>
+    </div>
+
+</div>
