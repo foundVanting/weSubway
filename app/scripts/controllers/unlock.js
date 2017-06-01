@@ -39,12 +39,16 @@ angular.module('newsubwayApp')
     }
 
     function setCertificateImage(value) {
-        $scope.$apply(function () {
+
             $scope.certificate= value;
-        })
+
     }
 
     function chooseImage() {
+        setCertificateImage('https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1496311287&di=890d0e3079786f3931c5aed6d6a271e1&src=http://pic9.nipic.com/20100901/4628577_161519016775_2.jpg');
+        return
+        //todo
+
         wx.chooseImage({
             count: 1, // 默认9
             sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -66,13 +70,13 @@ angular.module('newsubwayApp')
             success: function (res) {
 
                 var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
-                alert(localData);
                 $http.post(
                     Config.upload_image_url, {
                         image: localData,
                     }).then(function (res) {
                        var data = res.data;
                     })
+ //todo  上传
                 setCertificateImage(localData)
 
             }
