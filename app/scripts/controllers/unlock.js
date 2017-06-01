@@ -48,17 +48,13 @@ angular.module('newsubwayApp')
             sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
             sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
             success: function (res) {
+               alert(obj2string(res))
                 var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                 setCertificateImage(localIds)
             }
 
         });
     }
-
-
-
-
-
     function setQrCodeImage(data) {
         $scope.QrCodeImage =data;
     }
@@ -110,6 +106,8 @@ angular.module('newsubwayApp')
             showError(msg);
             return;
         }
+        setGoodsId(response.data[0].id)
+        console.log(response.data[0].id)
         setGoodsList( response.data);
         console.log(response);
     }
@@ -119,8 +117,32 @@ angular.module('newsubwayApp')
             .then(goodsComplete)
             .catch(Failed);
     }
-   function setGoodsList(value) {
+    function setGoodsList(value) {
        $scope.goodsList = value
-   }
+    }
+    function obj2string(o){
+        var r=[];
+        if(typeof o=="string"){
+            return "\""+o.replace(/([\'\"\\])/g,"\\$1").replace(/(\n)/g,"\\n").replace(/(\r)/g,"\\r").replace(/(\t)/g,"\\t")+"\"";
+        }
+        if(typeof o=="object"){
+            if(!o.sort){
+                for(var i in o){
+                    r.push(i+":"+obj2string(o[i]));
+                }
+                if(!!document.all&&!/^\n?function\s*toString\(\)\s*\{\n?\s*\[native code\]\n?\s*\}\n?\s*$/.test(o.toString)){
+                    r.push("toString:"+o.toString.toString());
+                }
+                r="{"+r.join()+"}";
+            }else{
+                for(var i=0;i<o.length;i++){
+                    r.push(obj2string(o[i]))
+                }
+                r="["+r.join()+"]";
+            }
+            return r;
+        }
+        return o.toString();
+    }
 
-}]);
+    }]);
