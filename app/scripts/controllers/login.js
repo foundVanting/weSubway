@@ -8,17 +8,20 @@
  * Controller of the newsubwayApp
  */
 angular.module('newsubwayApp')
-//     .run(function($http,$window,$location){
-//     $http.post(
-//         Config.weChat_config, {url: $location.$$absUrl})
-//         .then(function(res){
-//             console.log(res);
-//             wx.config(res.data);
-//         })
-// })
-  .controller('LoginCtrl',LoginCtrl);
-LoginCtrl.$injector = ['$cookies', '$location', 'loginService','$http'];
-function LoginCtrl($cookies, $location, loginService,$http) {
+    //     .run(function($http,$window,$location){
+    //     $http.post(
+    //         Config.weChat_config, {url: $location.$$absUrl})
+    //         .then(function(res){
+    //             console.log(res);
+    //             wx.config(res.data);
+    //         })
+    // })
+    .controller('LoginCtrl', LoginCtrl);
+
+    
+LoginCtrl.$injector = ['$cookies', '$location', 'loginService', '$http'];
+
+function LoginCtrl($cookies, $location, loginService, $http) {
     var vm = this;
 
     // init data
@@ -26,17 +29,19 @@ function LoginCtrl($cookies, $location, loginService,$http) {
     vm.password = '';
     vm.login = login;
     wechatConfig();
+
     function wechatConfig() {
         $http.post(
-            Config.weChat_config, {url: $location.$$absUrl})
-            .then(function(res){
+                Config.weChat_config, { url: $location.$$absUrl })
+            .then(function(res) {
                 console.log(res);
                 wx.config(res.data);
             })
     }
+
     function login() {
         if (angular.isNull(vm.username) || angular.isNull(vm.password)) {
-             return
+            return
         }
 
         loginService
@@ -75,6 +80,7 @@ function LoginCtrl($cookies, $location, loginService,$http) {
         $location.path('/unlock');
 
     }
+
     function weChatLoginComplete(response) {
         alert(response);
         console.log(response);
@@ -84,6 +90,7 @@ function LoginCtrl($cookies, $location, loginService,$http) {
         console.log(error);
         showError(error.statusText);
     }
+
     function showError(msg) {
         vm.showError = true;
         vm.errorMessage = msg;

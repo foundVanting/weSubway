@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
@@ -13,6 +14,7 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="bower_components/angular-pull-to-refresh/dist/angular-pull-to-refresh.min.css">
     <link rel="stylesheet" href="//res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
+    <link rel="stylesheet" href="styles/iconfont.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/example.css">
       <style>
@@ -28,17 +30,28 @@
           }
       </style>
     <!-- endbuild -->
-  </head>
-  <body ng-app="newsubwayApp">
+</head>
+
+<body ng-app="newsubwayApp">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
-
     <div class="container">
-    <div ng-view=""></div>
+        <div class="weui-tab">
+            <div class="weui-tab__panel" ng-view="">
+            </div>
+            <div class="weui-tabbar" ng-controller="TabBar as tb">
+                <a ng-click="tb.go('/')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/"}'>
+                    <i class="iconfont icon-unlock"></i>
+                    <p class="weui-tabbar__label">解锁</p>
+                </a>
+                <a ng-click="tb.go('/log')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/log"}'>
+                    <i class="iconfont icon-jilu"></i>
+                    <p class="weui-tabbar__label">记录</p>
+                </a>
+            </div>
+        </div>
     </div>
-
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
@@ -51,21 +64,19 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-pull-to-refresh/dist/angular-pull-to-refresh.min.js"></script>
-
-
     <!-- endbower -->
     <!-- endbuild -->
-
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/services/loginservice.js"></script>
-        <script src="scripts/services/mainservice.js"></script>
-        <script src="scripts/controllers/unlock.js"></script>
-        <script src="scripts/services/unlockservice.js"></script>
-        <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/services/loginservice.js"></script>
+    <script src="scripts/services/mainservice.js"></script>
+    <script src="scripts/controllers/unlock.js"></script>
+    <script src="scripts/services/unlockservice.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <!-- endbuild -->
 </body>
+
 </html>
