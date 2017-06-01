@@ -38,10 +38,19 @@
                 <input class="weui-input"  placeholder="车票或者其他" ng-model="certificate">
             </div>
             <div class="weui-cell__ft">
-                <button class="weui-vcode-btn">拍照</button>
+                <button class="weui-vcode-btn" ng-click="chooseImage()">拍照</button>
             </div>
         </div>
     </div>
+    <div class="page article js_show" ng-show="certificate">
+        <div class="page__hd">
+            <h1 class="page__title">
+                <img src="{{certificate}}" >
+            </h1>
+            <p class="page__desc"></p>
+        </div>
+    </div>
+
     <div class="page article js_show" ng-show="QrCodeImage">
         <div class="page__hd">
             <h1 class="page__title">
@@ -50,6 +59,7 @@
             <p class="page__desc"></p>
         </div>
     </div>
+
     <div class="page button js_show">
         <div class="page__bd page__bd_spacing">
               <a class="weui-btn weui-btn_primary"  ng-click="getQrCode()">确定</a>

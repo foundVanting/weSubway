@@ -13,9 +13,14 @@ angular.module('newsubwayApp').controller('UnlockCtrl', ['$scope','$cookies','un
     $scope.equipNumber='';
     $scope.certificate='';
     getGoodsList();
-    $scope.getQrCode=getQrCode;
-    $scope.setGoodsId=setGoodsId;
-    $scope.scanQrCode=scanQrCode;
+    $scope.getQrCode   = getQrCode;
+    $scope.setGoodsId  = setGoodsId;
+    $scope.scanQrCode  = scanQrCode;
+    $scope.chooseImage = chooseImage;
+
+    function setEquipNumber(value) {
+        $scope.equipNumber=value;
+    }
 
     function scanQrCode() {
         wx.scanQRCode({
@@ -23,11 +28,29 @@ angular.module('newsubwayApp').controller('UnlockCtrl', ['$scope','$cookies','un
             scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
             success: function (res) {
                 console.log(res);
-                alert(res.resultStr);
                 var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                setEquipNumber(result.split('_')[2])
             }
         })
     }
+
+    function setCertificateImage(value) {
+        $scope.certificate= value;
+    }
+
+    function chooseImage() {
+        wx.chooseImage({
+            count: 1, // 默认9
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                setCertificateImage(localIds)
+            }
+
+        });
+    }
+
 
 
 

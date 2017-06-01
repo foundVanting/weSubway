@@ -34,11 +34,6 @@ function LoginCtrl($cookies, $location, loginService,$http) {
                 wx.config(res.data);
             })
     }
-
-
-
-
-
     function login() {
         if (angular.isNull(vm.username) || angular.isNull(vm.password)) {
              return
