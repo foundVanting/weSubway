@@ -39,7 +39,7 @@ angular.module('newsubwayApp')
     }
 
     function setCertificateImage(value) {
-        $scope.apply(function () {
+        $scope.$apply(function () {
             $scope.certificate= value;
         })
     }
