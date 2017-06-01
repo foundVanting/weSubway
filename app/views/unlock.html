@@ -17,12 +17,12 @@
 
     <div class="weui-cells__title">时长选择</div>
     <div class="weui-cells weui-cells_radio">
-        <label class="weui-cell weui-check__label" for="{{goods.id}}" ng-repeat="goods in goodsList">
+        <label class="weui-cell weui-check__label" for="{{goods.id}}"  ng-repeat="goods in goodsList">
             <div class="weui-cell__bd">
                 <p>{{goods.body}}</p>
             </div>
             <div class="weui-cell__ft">
-                <input id="{{goods.id}}" class="weui-check" name="radio1" type="radio" ng-click="setGoodsId(goods.id)">
+                <input id="{{goods.id}}" class="weui-check" name="radio1" type="radio"  ng-click="setGoodsId(goods.id)">
                 <span class="weui-icon-checked"></span>
             </div>
         </label>
@@ -45,7 +45,7 @@
     <div class="page article js_show" ng-show="certificate">
         <div class="page__hd">
             <h1 class="page__title">
-                <img src="{{ certificate }}" >
+                <img ng-src="{{ certificate }}" >
             </h1>
             <p class="page__desc"></p>
         </div>
@@ -59,12 +59,13 @@
             <p class="page__desc"></p>
         </div>
     </div>
-
+    <div class="weui-cells__title"></div>
     <div class=" button js_show">
         <div class="page__bd page__bd_spacing">
               <a class="weui-btn weui-btn_primary"  ng-click="getQrCode()">确定</a>
         </div>
     </div>
+
 
     <div ng-show="showError">
         <div class="weui-mask"></div>
