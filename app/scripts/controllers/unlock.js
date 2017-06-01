@@ -67,6 +67,12 @@ angular.module('newsubwayApp')
 
                 var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
                 alert(localData);
+                $http.post(
+                    Config.upload_image_url, {
+                        image: localData,
+                    }).then(function (res) {
+                       var data = res.data;
+                    })
                 setCertificateImage(localData)
 
             }
