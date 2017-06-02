@@ -22,6 +22,17 @@ angular.module('newsubwayApp')
     $scope.scanQrCode = scanQrCode;
     $scope.chooseImage = chooseImage;
 
+        wechatConfig();
+
+        function wechatConfig() {
+            $http.post(
+                Config.weChat_config, { url: $location.$$absUrl })
+                .then(function(res) {
+                    console.log(res);
+                    wx.config(res.data);
+                })
+        }
+
     function setEquipNumber(value) {
         $scope.$apply(function () {
             $scope.equipNumber=value;
@@ -121,7 +132,9 @@ angular.module('newsubwayApp')
     }
 
     function setGoodsId(value) {
+        console.log(value)
         $scope.goodsId = value;
+
     }
 
     function Failed(error) {
@@ -134,7 +147,6 @@ angular.module('newsubwayApp')
     }
 
     function getQrCode() {
-        console.log($scope.equipNumber + '///' + $scope.goodsId + '///' + $scope.companyId + '///' + $scope.certificate)
         if (angular.isNull($scope.equipNumber) || angular.isNull($scope.goodsId) || angular.isNull($scope.companyId) || angular.isNull($scope.certificate)) {
             showError('参数为空');
             return;
@@ -154,11 +166,9 @@ angular.module('newsubwayApp')
             showError(msg);
             return;
         }
-        setGoodsId(response.data[0].id)
-        console.log(response.data[0].id)
+        var goodsId = response.data[0].id;
+        setGoodsId(goodsId)
         setGoodsList( response.data);
-
-        console.log(response);
     }
 
     function getGoodsList() {

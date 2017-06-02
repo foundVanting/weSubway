@@ -63,7 +63,7 @@ angular
                 resolve: resolver(true)
             })
             .otherwise({
-                redirectTo: '/'
+                redirectTo: '/log'
             });
     });
 

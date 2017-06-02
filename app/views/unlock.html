@@ -22,7 +22,7 @@
                 <p>{{goods.body}}</p>
             </div>
             <div class="weui-cell__ft">
-                <input id="{{goods.id}}" class="weui-check" name="radio1" type="radio"  ng-click="setGoodsId(goods.id)">
+                <input id="{{goods.id}}" class="weui-check" name="radio1" type="radio"  ng-checked="goods.id==goodsId" ng-click="setGoodsId(goods.id)">
                 <span class="weui-icon-checked"></span>
             </div>
         </label>
@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div class="weui-cells" ng-show="certificate">
+    <div class="weui-cells" ng-show="!showCamera">
         <div id="avatarCell" class="weui-cell">
             <div class="weui-cell__bd">
                 <p>凭证</p>
