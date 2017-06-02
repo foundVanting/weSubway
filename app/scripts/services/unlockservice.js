@@ -11,7 +11,8 @@ angular.module('newsubwayApp')
     .service('unlockService', ['$http', function($http) {
         return {
             getQrCode: getQrCode,
-            getGoodsList: getGoodsList
+            getGoodsList: getGoodsList,
+            getImageUrl:getImageUrl,
         };
 
         function getQrCode(equipNumber, goodsId, uid, companyId, certificate) {
@@ -21,5 +22,8 @@ angular.module('newsubwayApp')
         function getGoodsList(channel_id) {
             return $http.get(Config.url_prefix + "/channel/" + channel_id + "/goods");
 
+        }
+        function getImageUrl(serverId) {
+            $http.get(Config.upload_image_url, { params: { "serverId": serverId} })
         }
     }]);

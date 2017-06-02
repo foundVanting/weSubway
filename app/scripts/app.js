@@ -101,7 +101,7 @@ Config.login_url = Config.url_prefix + "/admin/login";
 Config.order_url = Config.url_prefix + "/orders";
 Config.qrcode_url = Config.url_prefix + "/qrcode";
 Config.weChat_config = Config.url_prefix + "/wechat/config";
-Config.upload_image_url = Config.url_prefix + "/upload/image";
+Config.upload_image_url = Config.url_prefix + "/image/url";
 
 
 var Constants = {};

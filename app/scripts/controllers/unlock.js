@@ -42,16 +42,15 @@ angular.module('newsubwayApp')
     }
 
     function setCertificateImage(value) {
+        $scope.$apply(function () {
             $scope.certificate= value;
+        });
     }
-
     function chooseImage() {
         //
         // setCertificateImage('https://team.weui.io/avatar/bear.jpg');
         // $scope.showCamera=false;
         // return
-        //todo
-
         wx.chooseImage({
             count: 1, // 默认9
             sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -59,41 +58,49 @@ angular.module('newsubwayApp')
 
             success: function(res) {
                 var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-                setCertificateImage(localIds)
+                uploadImage(localIds);
             }
 
         });
     }
-    function getLocalImgData(localIds) {
-        wx.getLocalImgData({
-            localId: localIds, // 图片的localID
-
-            success: function (res) {
-                var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
-                $http.post(
-                    Config.upload_image_url, {
-                        image: localData,
-                    }).then(function (res) {
-                       var data = res.data;
-                    })
- //todo  上传
-                setCertificateImage(localData)
-
-            }
-
-        });
-
-    }
-    // function uploadImage(localIds) {
-    //     wx.uploadImage({
-    //         localId: localIds, // 需要上传的图片的本地ID，由chooseImage接口获得
-    //         isShowProgressTips: 1, // 默认为1，显示进度提示
-    //         success: function (res){
-    //             var serverId = res.serverId; // 返回图片的服务器端ID
-    //         }
+    // function getLocalImgData(localIds) {
+    //     wx.getLocalImgData({
+    //         localId: localIds, // 图片的localID
     //
+    //         success: function (res) {
+    //             var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
+    //
+    //             setCertificateImage(localData)
+    //         }
     //     });
     // }
+    function uploadImage(localIds) {
+        wx.uploadImage({
+            localId: localIds, // 需要上传的图片的本地ID，由chooseImage接口获得
+            isShowProgressTips: 1, // 默认为1，显示进度提示
+            success: function (res){
+                var serverId = res.serverId; // 返回图片的服务器端ID
+                getImageUrl(serverId)
+            }
+        });
+    }
+    function getImageUrl(serverId) {
+        unlockService.getImageUrl(serverId)
+            .then(function (response) {
+                response = response.data;
+                var status = response.status || 0;
+                var msg = Constants.error_unknown;
+                if (status == 0) {
+                    msg = response.msg || msg;
+                    console.log("status:" + status);
+                    showError(msg);
+                    return;
+                }
+                setCertificateImage(response.data)
+
+            })
+            .catch(Failed)
+    }
     function setQrCodeImage(data) {
         $scope.QrCodeImage = data;
     }
