@@ -7,7 +7,7 @@
                 <label class="weui-label">设备号</label>
             </div>
             <div class="weui-cell__bd">
-                <input class="weui-input" placeholder="输入设备号" ng-model="equipNumber" >
+                <input class="weui-input" placeholder="输入设备号" ng-model="equipNumber"  auto-focus-when="equipNumberFocus" ng-blur="checkEquipNumber()">
             </div>
             <div class="weui-cell__ft">
                 <button class="weui-vcode-btn" ng-click="scanQrCode()">扫码</button>

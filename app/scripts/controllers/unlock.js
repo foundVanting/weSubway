@@ -9,19 +9,30 @@
  */
 
 angular.module('newsubwayApp')
-    .controller('UnlockCtrl', ['$scope','$cookies','unlockService','$window',function ($scope,$cookies, unlockService,$window) {
+    .controller('UnlockCtrl', ['$scope','$cookies','unlockService','$location',function ($scope,$cookies, unlockService,$location) {
     $scope.user=$cookies.getObject("user");
     $scope.companyId=12;
     $scope.showLoading=false;
     $scope.equipNumber='';
     $scope.certificate='';
     $scope.showCamera=true;
+    $scope.equipNumberFocus=false;
     $scope.getQrCode = getQrCode;
     $scope.setGoodsId = setGoodsId;
     $scope.scanQrCode = scanQrCode;
     $scope.chooseImage = chooseImage;
     $scope.setQrCodeImage = setQrCodeImage;
+
+    $scope.checkEquipNumber=checkEquipNumber;
     getGoodsList();
+    function checkEquipNumber() {
+        if ($scope.equipNumber.length !== 6) {
+            $scope.equipNumberFocus=true;
+            showError('设备号必须为6位')
+        }else {
+            $scope.equipNumberFocus=false;
+        }
+    }
     function setEquipNumber(value) {
         $scope.$apply(function () {
             $scope.equipNumber=value;

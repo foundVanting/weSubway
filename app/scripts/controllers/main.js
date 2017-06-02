@@ -15,9 +15,15 @@ MainCtrl.$injector = ['$scope', '$cookies', 'mainService'];
 function MainCtrl($scope, $cookies, mainService) {
     $scope.uid = $cookies.getObject("user").id;
     $scope.status = 3;
+    $scope.imageShowStatus=false;
     $scope.changeStatus = changeStatus;
+    $scope.showImage = showImage;
     getOrders();
 
+    function showImage(url) {
+        $scope.imageUrl = url;
+        $scope.imageShowStatus = true;
+    }
     function getOrders() {
         if (angular.isNull($scope.uid) || angular.isNull($scope.status)) {
             return showError('参数错误');
@@ -42,7 +48,7 @@ function MainCtrl($scope, $cookies, mainService) {
 
         var pagination = response.data;
         if (pagination.total == 0) {
-            showError('暂无数据');
+            // showError('暂无数据');
         }
         $scope.total = pagination.total
         $scope.orders = pagination.data;
