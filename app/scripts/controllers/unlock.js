@@ -15,26 +15,11 @@ angular.module('newsubwayApp')
     $scope.equipNumber='';
     $scope.certificate='';
     $scope.showCamera=true;
-    wechatConfig();
-
-
     $scope.getQrCode = getQrCode;
     $scope.setGoodsId = setGoodsId;
     $scope.scanQrCode = scanQrCode;
     $scope.chooseImage = chooseImage;
     getGoodsList();
-
-
-
-        function wechatConfig() {
-            $http.post(
-                Config.weChat_config, { url: $location.$$absUrl })
-                .then(function(res) {
-                    console.log(res);
-                    wx.config(res.data);
-                })
-        }
-
     function setEquipNumber(value) {
         $scope.$apply(function () {
             $scope.equipNumber=value;
