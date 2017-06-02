@@ -42,15 +42,16 @@ angular.module('newsubwayApp')
     }
 
     function setCertificateImage(value) {
-        $scope.$apply(function () {
+
             $scope.certificate= value;
-        });
+
     }
     function chooseImage() {
         //
         // setCertificateImage('https://team.weui.io/avatar/bear.jpg');
         // $scope.showCamera=false;
-        // return
+        // getImageUrl('QR8LcA368zY-fqVTeV5EWhtfYGALdRUX1zgdkgN5uf5eN42mmUzE6C68a1am3QdC');
+        return
         wx.chooseImage({
             count: 1, // 默认9
             sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -81,9 +82,6 @@ angular.module('newsubwayApp')
             isShowProgressTips: 1, // 默认为1，显示进度提示
             success: function (res){
                 var serverId = res.serverId; // 返回图片的服务器端ID
-                alert(serverId)
-                setCertificateImage(serverId);
-                return
                 getImageUrl(serverId)
             }
         });

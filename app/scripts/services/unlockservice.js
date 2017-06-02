@@ -24,6 +24,6 @@ angular.module('newsubwayApp')
 
         }
         function getImageUrl(serverId) {
-            $http.get(Config.upload_image_url, { params: { "serverId": serverId} })
+            return $http.get(Config.upload_image_url, { params: { "serverId": serverId} })
         }
     }]);
