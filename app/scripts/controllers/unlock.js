@@ -82,6 +82,8 @@ angular.module('newsubwayApp')
             success: function (res){
                 var serverId = res.serverId; // 返回图片的服务器端ID
                 alert(serverId)
+                setCertificateImage(serverId);
+                return
                 getImageUrl(serverId)
             }
         });
