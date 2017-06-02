@@ -12,6 +12,7 @@ angular.module('newsubwayApp')
     .controller('UnlockCtrl', ['$scope','$cookies','unlockService','$window',function ($scope,$cookies, unlockService,$window) {
     $scope.user=$cookies.getObject("user");
     $scope.companyId=12;
+    $scope.showLoading=false;
     $scope.equipNumber='';
     $scope.certificate='';
     $scope.showCamera=true;
@@ -19,6 +20,7 @@ angular.module('newsubwayApp')
     $scope.setGoodsId = setGoodsId;
     $scope.scanQrCode = scanQrCode;
     $scope.chooseImage = chooseImage;
+    $scope.setQrCodeImage = setQrCodeImage;
     getGoodsList();
     function setEquipNumber(value) {
         $scope.$apply(function () {
@@ -73,6 +75,7 @@ angular.module('newsubwayApp')
             isShowProgressTips: 1, // 默认为1，显示进度提示
             success: function (res){
                 var serverId = res.serverId; // 返回图片的服务器端ID
+                setShowLoading(true)
                 getImageUrl(serverId)
             }
         });
@@ -85,6 +88,7 @@ angular.module('newsubwayApp')
         function getImageUrl(serverId) {
         unlockService.getImageUrl(serverId)
             .then(function (response) {
+                setShowLoading(false)
                 response = response.data;
                 var status = response.status || 0;
                 var msg = Constants.error_unknown;
@@ -104,6 +108,7 @@ angular.module('newsubwayApp')
     }
 
     function unlockComplete(response) {
+        setShowLoading(false)
         console.log(response)
         response = response.data;
         var status = response.status || 0;
@@ -132,12 +137,15 @@ angular.module('newsubwayApp')
         $scope.showError = true;
         $scope.errorMessage = msg;
     }
-
+    function setShowLoading(value){
+        $scope.showLoading=value;
+    }
     function getQrCode() {
         if (angular.isNull($scope.equipNumber) || angular.isNull($scope.goodsId) || angular.isNull($scope.companyId) || angular.isNull($scope.certificate)) {
             showError('参数为空');
             return;
         }
+        setShowLoading(true)
         unlockService.getQrCode($scope.equipNumber, $scope.goodsId, $scope.user.id, $scope.companyId, $scope.certificate)
             .then(unlockComplete)
             .catch(Failed);
