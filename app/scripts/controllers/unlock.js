@@ -47,21 +47,15 @@ angular.module('newsubwayApp')
 
     }
     function chooseImage() {
-        //
-        // setCertificateImage('https://team.weui.io/avatar/bear.jpg');
-        // $scope.showCamera=false;
-        // getImageUrl('QR8LcA368zY-fqVTeV5EWhtfYGALdRUX1zgdkgN5uf5eN42mmUzE6C68a1am3QdC');
         wx.chooseImage({
             count: 1, // 默认9
             sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
             sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-
             success: function(res) {
                 var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                 var localId = localIds.pop(); // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                 uploadImage(localId);
             }
-
         });
     }
     // function getLocalImgData(localIds) {
@@ -85,7 +79,12 @@ angular.module('newsubwayApp')
             }
         });
     }
-    function getImageUrl(serverId) {
+
+        function setShowCamera(value) {
+            $scope.showCamera=value;
+        }
+
+        function getImageUrl(serverId) {
         unlockService.getImageUrl(serverId)
             .then(function (response) {
                 response = response.data;
@@ -97,8 +96,8 @@ angular.module('newsubwayApp')
                     showError(msg);
                     return;
                 }
+                setShowCamera(false)
                 setCertificateImage(response.data)
-
             })
             .catch(Failed)
     }
@@ -118,7 +117,6 @@ angular.module('newsubwayApp')
             showError(msg);
             return;
         }
-
         setQrCodeImage(response.data)
     }
 
