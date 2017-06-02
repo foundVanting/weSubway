@@ -29,7 +29,7 @@
 
     </div>
     <div class="weui-cells__title">车票或者其他凭证</div>
-    <div class="weui-cells weui-cells_form">
+    <div class="weui-cells weui-cells_form" ng-show="showCamera">
         <div class="weui-cell">
             <div class="weui-cell__hd">
                 <label class="weui-label">凭证</label>
@@ -42,14 +42,17 @@
             </div>
         </div>
     </div>
-    <div class="page article js_show" ng-show="certificate">
-        <div class="page__hd">
-            <h1 class="page__title">
-                <img ng-src="{{ certificate }}" >
-            </h1>
-            <p class="page__desc"></p>
+    <div class="weui-cells" ng-show="certificate">
+        <div id="avatarCell" class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>凭证</p>
+            </div>
+            <div class="weui-cell__ft">
+                <img class="profile__avatar___2MB0k" style="vertical-align: middle;width: 50px;height: 50px;border-radius: 4px;" ng-src="{{ certificate }}" alt="">
+            </div>
         </div>
     </div>
+
 
     <div class="page article js_show" ng-show="QrCodeImage">
         <div class="page__hd">

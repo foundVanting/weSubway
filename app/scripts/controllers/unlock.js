@@ -14,6 +14,7 @@ angular.module('newsubwayApp')
     $scope.companyId=12;
     $scope.equipNumber='';
     $scope.certificate='';
+    $scope.showCamera=true;
 
     getGoodsList();
     $scope.getQrCode = getQrCode;
@@ -45,8 +46,10 @@ angular.module('newsubwayApp')
     }
 
     function chooseImage() {
-        setCertificateImage('https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1496311287&di=890d0e3079786f3931c5aed6d6a271e1&src=http://pic9.nipic.com/20100901/4628577_161519016775_2.jpg');
-        return
+        //
+        // setCertificateImage('https://team.weui.io/avatar/bear.jpg');
+        // $scope.showCamera=false;
+        // return
         //todo
 
         wx.chooseImage({
@@ -66,7 +69,6 @@ angular.module('newsubwayApp')
             localId: localIds, // 图片的localID
 
             success: function (res) {
-
                 var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
                 $http.post(
                     Config.upload_image_url, {
