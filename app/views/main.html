@@ -45,8 +45,8 @@
                 <div class="weui-form-preview__item">
                     <label class="weui-form-preview__label">凭证</label>
                     <span class="weui-form-preview__value">
-                        <i class="weui-icon-info-circle" ng-click="showImage(order.certificate)" ng-if="checkImgExists(order.certificate)"></i>
-                        <span ng-if="!checkImgExists(order.certificate)">{{ order.certificate }}</span>
+                        <i class="weui-icon-info-circle" ng-click="showImage(order.certificate)" ng-if="order.isImage"></i>
+                        <span ng-if="!order.isImage">{{ order.certificate }}</span>
                     </span>
                 </div>
             </div>
