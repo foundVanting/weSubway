@@ -2,19 +2,19 @@
     <div class="weui-navbar">
         <div class="weui-navbar__item" ng-click="changeStatus(3)" ng-class='{ "weui-bar__item_on":status==3}'>
             未回收
-            <span class="weui-badge">43</span>
+            <span class="weui-badge">{{usedCount}}</span>
         </div>
         <div class="weui-navbar__item" ng-click="changeStatus(1) " ng-class='{ "weui-bar__item_on":status==1}'>
             未使用
-            <span class="weui-badge badge-gray">43</span>
+            <span class="weui-badge badge-gray">{{ unusedCount }}</span>
         </div>
         <div class="weui-navbar__item" ng-click="changeStatus(2)" ng-class='{ "weui-bar__item_on":status==2}'>
             使用中
-            <span class="weui-badge badge-gray">43</span>
+            <span class="weui-badge badge-gray">{{ usingCount}}</span>
         </div>
         <div class="weui-navbar__item" ng-click="changeStatus(4)" ng-class='{ "weui-bar__item_on":status==4}'>
             已回收
-            <span class="weui-badge badge-gray">100+</span>
+            <span class="weui-badge badge-gray">{{recycledCount}}</span>
         </div>
     </div>
     <!--暂没看懂这个怎么用 有空了再集成-->
@@ -24,7 +24,7 @@
         </ul>
     </div>
 </div>
-<div class="page preview js_show" style="top:50px">
+<div class="page preview js_show" style="top:50px;bottom: 50px;">
     <div class="page__bd">
         <div class="weui-form-preview" ng-repeat="order in orders">
             <div class="weui-form-preview__hd">

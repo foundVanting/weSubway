@@ -50,9 +50,12 @@ function MainCtrl($scope, $cookies, mainService) {
         if (pagination.total == 0) {
             // showError('暂无数据');
         }
-        $scope.total = pagination.total
+        console.log(pagination)
+        $scope.usedCount = response.usedCount;
+        $scope.unusedCount = response.unusedCount;
+        $scope.usingCount = response.usingCount;
+        $scope.recycledCount = response.recycledCount;
         $scope.orders = pagination.data;
-        console.log($scope)
     }
 
     function ordersFailed(error) {
