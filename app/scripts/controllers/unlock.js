@@ -81,17 +81,7 @@ angular.module('newsubwayApp')
             }
         });
     }
-    // function getLocalImgData(localIds) {
-    //     wx.getLocalImgData({
-    //         localId: localIds, // 图片的localID
-    //
-    //         success: function (res) {
-    //             var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
-    //
-    //             setCertificateImage(localData)
-    //         }
-    //     });
-    // }
+
     function uploadImage(localId) {
         wx.uploadImage({
             localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
@@ -104,11 +94,11 @@ angular.module('newsubwayApp')
         });
     }
 
-        function setShowCamera(value) {
-            $scope.showCamera=value;
-        }
+    function setShowCamera(value) {
+        $scope.showCamera=value;
+    }
 
-        function getImageUrl(serverId) {
+    function getImageUrl(serverId) {
         unlockService.getImageUrl(serverId)
             .then(function (response) {
                 setShowLoading(false)

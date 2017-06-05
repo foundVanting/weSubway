@@ -16,7 +16,7 @@ angular.module('newsubwayApp')
         };
 
         function getQrCode(equipNumber, goodsId, uid, companyId, certificate) {
-            return $http.get(Config.qrcode_url, { params: { "equinumber": equipNumber, "goodsId": goodsId, "companyId": companyId, "operatorId": uid, 'certificate': certificate } });
+            return $http.get(Config.qrcode_url, { params: { "equinumber": equipNumber, "goodsId": goodsId, "companyId": companyId, "operatorId": uid, 'certificate': certificate,'isWeChat':1} });
         }
 
         function getGoodsList(channel_id) {
