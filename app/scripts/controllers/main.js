@@ -18,9 +18,33 @@ function MainCtrl($scope, $cookies, mainService) {
     $scope.imageShowStatus=false;
     $scope.changeStatus = changeStatus;
     $scope.showImage = showImage;
+    $scope.recycle = recycle;
 
     getOrders();
 
+    function recycleComplete(response) {
+        console.log(response);
+        response = response.data;
+        var status = response.status || 0;
+        var msg = Constants.error_unknown;
+
+        if (status == 0) {
+            msg = response.msg || msg;
+            console.log("status:" + status);
+            showError(msg);
+            return;
+        }
+        getOrders();
+
+        // $scope.orders.remove()
+
+    }
+
+    function recycle(orderId) {
+        mainService.recycle(orderId)
+            .then(recycleComplete)
+            .catch(ordersFailed);
+    }
     function showImage(url) {
         $scope.imageUrl = url;
         $scope.imageShowStatus = true;
