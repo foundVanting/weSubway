@@ -21,7 +21,7 @@ function MainCtrl($scope, $cookies, mainService,$http) {
     $scope.recycle = recycle;
     $scope.loadMore= loadMore;
     $scope.page =1;
-    $scope.more = true;
+    $scope.more = false;
     $scope.orders =[];
     $scope.busy = false;
 
@@ -36,13 +36,15 @@ function MainCtrl($scope, $cookies, mainService,$http) {
     function loadMoreComplete(response) {
         response = response.data;
         var pagination = response.data;
-        if (pagination.total == 0 ||pagination.to == pagination.total) {
-            $scope.more =false
-        }
         $scope.page +=1;
         var items = pagination.data;
         for (var i = 0; i < items.length; i++) {
             $scope.orders.push(items[i]);
+        }
+        if (pagination.total == 0 ||pagination.to == pagination.total) {
+            $scope.more =false
+        }else {
+            $scope.more =true
         }
         $scope.busy = false;
     }
@@ -97,10 +99,6 @@ function MainCtrl($scope, $cookies, mainService,$http) {
         }
 
         var pagination = response.data;
-        if (pagination.total == 0 ||pagination.to == pagination.total) {
-            $scope.more =false
-        }
-
         console.log(pagination)
         $scope.page +=1;
         $scope.usedCount = response.usedCount;
@@ -108,6 +106,11 @@ function MainCtrl($scope, $cookies, mainService,$http) {
         $scope.usingCount = response.usingCount;
         $scope.recycledCount = response.recycledCount;
         $scope.orders = pagination.data;
+        if (pagination.total == 0 ||pagination.to == pagination.total) {
+            $scope.more =false
+        }else {
+            $scope.more =true
+        }
     }
 
     function ordersFailed(error) {

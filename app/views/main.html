@@ -6,23 +6,23 @@
         </div>
         <div class="weui-navbar__item" ng-click="changeStatus(1) " ng-class='{ "weui-bar__item_on":status==1}'>
             未使用
-            <span class="weui-badge badge-gray">{{ unusedCount }}</span>
+            <span class="weui-badge ">{{ unusedCount }}</span>
         </div>
         <div class="weui-navbar__item" ng-click="changeStatus(2)" ng-class='{ "weui-bar__item_on":status==2}'>
             使用中
-            <span class="weui-badge badge-gray">{{ usingCount}}</span>
+            <span class="weui-badge ">{{ usingCount}}</span>
         </div>
         <div class="weui-navbar__item" ng-click="changeStatus(4)" ng-class='{ "weui-bar__item_on":status==4}'>
             已回收
-            <span class="weui-badge badge-gray">{{recycledCount}}</span>
+            <span class="weui-badge ">{{recycledCount}}</span>
         </div>
     </div>
     <!--暂没看懂这个怎么用 有空了再集成-->
-    <div class="weui-tab__panel">
-        <ul class="list-group list-group-table" pull-to-refresh="onReload()">
-            <li class="list-group-item" ng-repeat="order in orders"></li>
-        </ul>
-    </div>
+    <!--<div class="weui-tab__panel">-->
+        <!--<ul class="list-group list-group-table" pull-to-refresh="onReload()">-->
+            <!--<li class="list-group-item" ng-repeat="order in orders"></li>-->
+        <!--</ul>-->
+    <!--</div>-->
 </div>
 <div class="page preview js_show" style="top:50px;bottom: 50px;">
     <div class="page__bd">
