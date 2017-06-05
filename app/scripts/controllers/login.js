@@ -8,14 +8,6 @@
  * Controller of the newsubwayApp
  */
 angular.module('newsubwayApp')
-    //     .run(function($http,$window,$location){
-    //     $http.post(
-    //         Config.weChat_config, {url: $location.$$absUrl})
-    //         .then(function(res){
-    //             console.log(res);
-    //             wx.config(res.data);
-    //         })
-    // })
     .controller('LoginCtrl', LoginCtrl);
 
     
@@ -28,16 +20,8 @@ function LoginCtrl($cookies, $location, loginService, $http) {
     vm.username = '';
     vm.password = '';
     vm.login = login;
-    wechatConfig();
 
-    function wechatConfig() {
-        $http.post(
-                Config.weChat_config, { url: $location.$$absUrl })
-            .then(function(res) {
-                console.log(res);
-                wx.config(res.data);
-            })
-    }
+
 
     function login() {
         if (angular.isNull(vm.username) || angular.isNull(vm.password)) {

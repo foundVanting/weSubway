@@ -24,6 +24,18 @@ angular.module('newsubwayApp')
     $scope.setQrCodeImage = setQrCodeImage;
 
     $scope.checkEquipNumber=checkEquipNumber;
+    //weChat config
+    wechatConfig();
+    function wechatConfig() {
+        $http.post(
+            Config.weChat_config, { url: $location.$$absUrl })
+            .then(function(res) {
+                console.log(res);
+                wx.config(res.data);
+            })
+    }
+
+
     getGoodsList();
     function checkEquipNumber() {
         if ($scope.equipNumber.length !== 6) {
