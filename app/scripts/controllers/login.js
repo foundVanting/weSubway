@@ -11,9 +11,9 @@ angular.module('newsubwayApp')
     .controller('LoginCtrl', LoginCtrl);
 
     
-LoginCtrl.$injector = ['$cookies', '$location', 'loginService', '$http'];
+LoginCtrl.$injector = ['$cookies', '$location', 'loginService'];
 
-function LoginCtrl($cookies, $location, loginService, $http) {
+function LoginCtrl($cookies, $location, loginService) {
     var vm = this;
 
     // init data

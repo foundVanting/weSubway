@@ -9,7 +9,7 @@
  */
 
 angular.module('newsubwayApp')
-    .controller('UnlockCtrl', ['$scope','$cookies','unlockService','$location',function ($scope,$cookies, unlockService,$location) {
+    .controller('UnlockCtrl', ['$scope','$cookies','unlockService','$location','$http',function ($scope,$cookies, unlockService,$location,$http) {
     $scope.user=$cookies.getObject("user");
     $scope.companyId=12;
     $scope.showLoading=false;
