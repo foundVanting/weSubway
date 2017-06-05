@@ -18,7 +18,7 @@ angular
         'ngRoute',
         'ngSanitize',
         'ngTouch',
-        'mgcrea.pullToRefresh'
+        'mgcrea.pullToRefresh',
     ])
     .config(function($routeProvider) {
         //中间件 鉴权 用户是否登录
@@ -66,6 +66,7 @@ angular
                 redirectTo: '/'
             });
     });
+
 
 // TabBar
 

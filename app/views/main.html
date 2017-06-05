@@ -26,34 +26,35 @@
 </div>
 <div class="page preview js_show" style="top:50px;bottom: 50px;">
     <div class="page__bd">
-        <div class="weui-form-preview" ng-repeat="order in orders">
-            <div class="weui-form-preview__hd">
-                <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">设备号</label>
-                    <em class="weui-form-preview__value">{{order.quinumber}}</em>
+            <div class="weui-form-preview" ng-repeat="order in orders">
+                <div class="weui-form-preview__hd">
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">设备号</label>
+                        <em class="weui-form-preview__value">{{order.quinumber}}</em>
+                    </div>
+                </div>
+                <div class="weui-form-preview__bd">
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">开始时间</label>
+                        <span class="weui-form-preview__value">{{order.start_at || "未使用" }}</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">结束时间</label>
+                        <span class="weui-form-preview__value">{{order.end_at || "未使用"}}</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">凭证</label>
+                        <span class="weui-form-preview__value">
+                            <i class="weui-icon-info-circle" ng-click="showImage(order.certificate)" ng-if="order.isImage"></i>
+                            <span ng-if="!order.isImage">{{ order.certificate }}</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="weui-form-preview__ft" ng-if="status ==3">
+                    <a class="weui-form-preview__btn weui-form-preview__btn_primary"  ng-click="recycle(order.id)">回收</a>
                 </div>
             </div>
-            <div class="weui-form-preview__bd">
-                <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">开始时间</label>
-                    <span class="weui-form-preview__value">{{order.start_at || "未使用" }}</span>
-                </div>
-                <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">结束时间</label>
-                    <span class="weui-form-preview__value">{{order.end_at || "未使用"}}</span>
-                </div>
-                <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">凭证</label>
-                    <span class="weui-form-preview__value">
-                        <i class="weui-icon-info-circle" ng-click="showImage(order.certificate)" ng-if="order.isImage"></i>
-                        <span ng-if="!order.isImage">{{ order.certificate }}</span>
-                    </span>
-                </div>
-            </div>
-            <div class="weui-form-preview__ft" ng-if="status ==3">
-                <a class="weui-form-preview__btn weui-form-preview__btn_primary"  ng-click="recycle(order.id)">回收</a>
-            </div>
-        </div>
+        <a class="weui-form-preview__btn weui-form-preview__btn_primary" ng-show="more && !busy" ng-click="loadMore()">点击加载</a>
     </div>
 </div>
 

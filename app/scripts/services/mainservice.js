@@ -17,9 +17,9 @@ angular.module('newsubwayApp')
       };
       return service;
 
-    function orders(uid,status) {
-      console.log('get orders server');
-         return $http.get(Config.order_url, {params:{"user_id": uid, "status": status}});
+    function orders(uid,status,page) {
+      console.log('get orders server: page='+page);
+         return $http.get(Config.order_url, {params:{"user_id": uid, "status": status,"page":page}});
     }
     function recycle(orderId) {
         return $http.get(Config.url_prefix+'/order/'+orderId+'/recycle');
