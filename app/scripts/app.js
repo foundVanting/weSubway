@@ -79,6 +79,7 @@ function TabBar($scope, $location) {
     var vm = this;
     vm.path = $location.path();
     vm.go = go;
+    vm.show=true
 
     $scope.$on('$routeChangeSuccess', function(event, current, previous) {
         vm.path = current.originalPath;

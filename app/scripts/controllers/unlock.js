@@ -9,7 +9,7 @@
  */
 
 angular.module('newsubwayApp')
-    .controller('UnlockCtrl', ['$scope','$cookies','unlockService','$location','$http',function ($scope,$cookies, unlockService,$location,$http) {
+    .controller('UnlockCtrl', ['$scope','$cookies','unlockService','$location','$http','$interval',function ($scope,$cookies, unlockService,$location,$http,$interval) {
     $scope.user=$cookies.getObject("user");
     $scope.companyId=12;
     $scope.showLoading=false;
@@ -18,6 +18,9 @@ angular.module('newsubwayApp')
     $scope.showCamera=true;
     $scope.equipNumberFocus=false;
     $scope.bigPhoto = false;
+    $scope.topError = false;
+    $scope.topErrorMsg = '';
+
     $scope.getQrCode = getQrCode;
     $scope.setGoodsId = setGoodsId;
     $scope.scanQrCode = scanQrCode;
@@ -25,9 +28,8 @@ angular.module('newsubwayApp')
     $scope.setQrCodeImage = setQrCodeImage;
     $scope.checkEquipNumber=checkEquipNumber;
     $scope.setBigPhoto=setBigPhoto;
-    
-
-
+    $scope.showTopError=showTopError;
+    $scope.checkCertificate=checkCertificate;
     //weChat config
     wechatConfig();
     function wechatConfig() {
@@ -38,10 +40,21 @@ angular.module('newsubwayApp')
                 wx.config(res.data);
             })
     }
-
-
     getGoodsList();
-    
+    function checkCertificate() {
+        if(angular.isNull($scope.certificate)){
+            showTopError('凭证不能为空')
+        }
+    }
+    function showTopError(msg) {
+        $scope.topError=true;
+        $scope.topErrorMsg=msg;
+        var a = $interval(function(){
+            $scope.topError=false;
+            $scope.topErrorMsg='';
+            $interval.cancel(a);
+        },2000);
+    }
     function setBigPhoto(value) {
         $scope.bigPhoto =value
     }
@@ -49,7 +62,7 @@ angular.module('newsubwayApp')
     function checkEquipNumber() {
         if ($scope.equipNumber.length !== 6) {
             $scope.equipNumberFocus=true;
-            showError('设备号必须为6位')
+            showTopError('设备号必须为6位')
         }else {
             $scope.equipNumberFocus=false;
         }

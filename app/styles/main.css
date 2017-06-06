@@ -82,7 +82,11 @@
   /*}*/
 /*}*/
 
-.container {
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+  .container {
     position: absolute;
     top: 0;
     right: 0;

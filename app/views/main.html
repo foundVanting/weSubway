@@ -58,7 +58,9 @@
                     <a class="weui-form-preview__btn weui-form-preview__btn_primary"  ng-click="recycle(order.id)">回收</a>
                 </div>
             </div>
-        <a class="weui-form-preview__btn weui-form-preview__btn_primary" ng-show="more && !busy" ng-click="loadMore()">点击加载</a>
+
+            <a ng-cloak class=" weui-form-preview__btn weui-form-preview__btn_primary" style="margin-bottom: 10px;margin-top: 5px;"  ng-show="more" ng-click="loadMore()">点击加载</a>
+
     </div>
 </div>
 <div id="iosDialog2" class="js_dialog" style="opacity: 1;" ng-show="imageShowStatus">

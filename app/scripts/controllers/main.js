@@ -124,9 +124,7 @@ function MainCtrl($scope, $cookies, mainService,$http) {
     }
 
     function changeStatus(status) {
-        // alert(status)
         $scope.page =1;
-        $scope.more =true;
         $scope.status = status;
         getOrders();
     }

@@ -1,3 +1,5 @@
+<div ng-cloak  class="weui-toptips weui-toptips_warn js_tooltips" style="display: block" ng-show="topError"> {{topErrorMsg}}</div>
+
 <div class="input js_show">
     <div class="weui-cells__title">输入设备号</div>
     <div class="weui-cells weui-cells_form">
@@ -7,7 +9,7 @@
                 <label class="weui-label">设备号</label>
             </div>
             <div class="weui-cell__bd">
-                <input class="weui-input" placeholder="输入设备号" ng-model="equipNumber"  auto-focus-when="equipNumberFocus" ng-blur="checkEquipNumber()">
+                <input class="weui-input" placeholder="输入设备号" ng-model="equipNumber" maxlength="6"  ng-blur="checkEquipNumber()">
             </div>
             <div class="weui-cell__ft">
                 <button class="weui-vcode-btn" ng-click="scanQrCode()">扫码</button>
@@ -26,7 +28,6 @@
                 <span class="weui-icon-checked"></span>
             </div>
         </label>
-
     </div>
     <div class="weui-cells__title">车票或者其他凭证</div>
     <div class="weui-cells weui-cells_form">
@@ -35,7 +36,7 @@
                 <label class="weui-label">凭证</label>
             </div>
             <div class="weui-cell__bd">
-                <input class="weui-input"  placeholder="车票或者其他" ng-model="certificate" ng-show="showCamera">
+                <input class="weui-input"  placeholder="车票或者其他" ng-model="certificate" ng-show="showCamera" ng-blur="checkCertificate()">
                 <img class="profile__avatar___2MB0k" style="vertical-align: middle;width: 50px;height: 50px;border-radius: 4px;" ng-src="{{ certificate }}" ng-click="setBigPhoto(true)" ng-if="!showCamera">
             </div>
             <div class="weui-cell__ft">
