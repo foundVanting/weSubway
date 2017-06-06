@@ -35,20 +35,11 @@
                 <label class="weui-label">凭证</label>
             </div>
             <div class="weui-cell__bd">
-                <input class="weui-input"  placeholder="车票或者其他" ng-model="certificate">
+                <input class="weui-input"  placeholder="车票或者其他" ng-model="certificate" ng-show="showCamera">
+                <img class="profile__avatar___2MB0k" style="vertical-align: middle;width: 50px;height: 50px;border-radius: 4px;" ng-src="{{ certificate }}" alt="" ng-if="!showCamera">
             </div>
             <div class="weui-cell__ft">
-                <button class="weui-vcode-btn" ng-click="chooseImage()">拍照</button>
-            </div>
-        </div>
-    </div>
-    <div class="weui-cells" ng-if="!showCamera">
-        <div id="avatarCell" class="weui-cell">
-            <div class="weui-cell__bd">
-                <p>凭证</p>
-            </div>
-            <div class="weui-cell__ft">
-                <img class="profile__avatar___2MB0k" style="vertical-align: middle;width: 50px;height: 50px;border-radius: 4px;" ng-src="{{ certificate }}" alt="">
+                <button class="weui-vcode-btn" ng-click="chooseImage()">{{ showCamera?'拍照':'重拍' }}</button>
             </div>
         </div>
     </div>
@@ -84,7 +75,7 @@
             <div class="weui-dialog__hd"><strong class="weui-dialog__title">错误</strong></div>
             <div class="weui-dialog__bd">{{errorMessage}}</div>
             <div class="weui-dialog__ft">
-                <a ng-click="showError=false;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
+                <a ng-click="showError=false;" class="weui-dialog__btn weui-dialog__btn_primary">解锁</a>
             </div>
         </div>
     </div>
