@@ -17,13 +17,17 @@ angular.module('newsubwayApp')
     $scope.certificate='';
     $scope.showCamera=true;
     $scope.equipNumberFocus=false;
+    $scope.bigPhoto = false;
     $scope.getQrCode = getQrCode;
     $scope.setGoodsId = setGoodsId;
     $scope.scanQrCode = scanQrCode;
     $scope.chooseImage = chooseImage;
     $scope.setQrCodeImage = setQrCodeImage;
-
     $scope.checkEquipNumber=checkEquipNumber;
+    $scope.setBigPhoto=setBigPhoto;
+    
+
+
     //weChat config
     wechatConfig();
     function wechatConfig() {
@@ -37,6 +41,11 @@ angular.module('newsubwayApp')
 
 
     getGoodsList();
+    
+    function setBigPhoto(value) {
+        $scope.bigPhoto =value
+    }
+    
     function checkEquipNumber() {
         if ($scope.equipNumber.length !== 6) {
             $scope.equipNumberFocus=true;
