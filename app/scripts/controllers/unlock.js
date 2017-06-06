@@ -15,7 +15,7 @@ angular.module('newsubwayApp')
     $scope.showLoading=false;
     $scope.equipNumber='';
     $scope.certificate='';
-    $scope.showCamera=true;
+    $scope.showCamera=false;
     $scope.equipNumberFocus=false;
     $scope.getQrCode = getQrCode;
     $scope.setGoodsId = setGoodsId;
