@@ -25,6 +25,7 @@ function MainCtrl($scope, $cookies, mainService,$http) {
     $scope.orders =[];
     $scope.busy = false;
 
+    getOrders();
 
     function loadMore() {
         if ($scope.busy) return;
@@ -49,9 +50,6 @@ function MainCtrl($scope, $cookies, mainService,$http) {
         $scope.busy = false;
     }
 
-
-    getOrders();
-
     function recycleComplete(response) {
         console.log(response);
         response = response.data;
@@ -64,7 +62,7 @@ function MainCtrl($scope, $cookies, mainService,$http) {
             showError(msg);
             return;
         }
-        // getOrders();
+        getOrders();
     }
 
     function recycle(orderId) {
@@ -122,7 +120,6 @@ function MainCtrl($scope, $cookies, mainService,$http) {
         $scope.showError = true;
         $scope.errorMessage = msg;
     }
-
     function changeStatus(status) {
         $scope.page =1;
         $scope.status = status;
