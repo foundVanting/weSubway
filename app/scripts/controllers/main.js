@@ -16,10 +16,7 @@ function MainCtrl($scope, $cookies, mainService,$http) {
     $scope.uid = $cookies.getObject("user").id;
     $scope.status = 3;
     $scope.imageShowStatus=false;
-    $scope.changeStatus = changeStatus;
-    $scope.showImage = showImage;
-    $scope.recycle = recycle;
-    $scope.loadMore= loadMore;
+
     $scope.page =1;
     $scope.more = false;
     $scope.orders =[];
@@ -28,8 +25,17 @@ function MainCtrl($scope, $cookies, mainService,$http) {
     $scope.unusedCount = 0;
     $scope.usingCount = 0;
     $scope.recycledCount = 0;
+    $scope.changeStatus = changeStatus;
+    $scope.recycle = recycle;
+    $scope.loadMore= loadMore;
+    $scope.showImage = showImage;
+    $scope.hideImage= hideImage;
 
     getOrders();
+    function hideImage() {
+        $scope.imageUrl = '';
+        $scope.imageShowStatus = false;
+    }
 
     function loadMore() {
         if ($scope.busy) return;

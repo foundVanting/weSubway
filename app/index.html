@@ -30,7 +30,7 @@
                 <div class="page__bd" style="height: 100%;">
                     <div class="weui-tab">
                         <div class="weui-tab__panel" ng-view> </div>
-                        <div class="weui-tabbar" ng-controller="TabBar as tb" ng-show="tb.path != '/login'">
+                        <div class="weui-tabbar" style="position: fixed" ng-controller="TabBar as tb" ng-show="tb.path != '/login'">
                             <a ng-click="tb.go('/')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/"}'>
                                 <i class="iconfont icon-unlock"></i>
                                 <p class="weui-tabbar__label">解锁</p>

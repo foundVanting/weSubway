@@ -17,14 +17,14 @@
         </div>
     </div>
 
-    <div class="weui-cells__title">时长选择</div>
+    <div class="weui-cells__title">套餐选择</div>
     <div class="weui-cells weui-cells_radio">
         <label class="weui-cell weui-check__label" for="{{goods.id}}"  ng-repeat="goods in goodsList">
             <div class="weui-cell__bd">
                 <p>{{goods.body}}</p>
             </div>
             <div class="weui-cell__ft">
-                <input id="{{goods.id}}" class="weui-check" name="radio1" type="radio"  ng-checked="goods.id==goodsId" ng-click="setGoodsId(goods.id)">
+                <input id="{{goods.id}}" class="weui-check" name="radio1" type="radio"  ng-checked="goods.id==goodsId" ng-click="setGoods(goods.id,goods.body)">
                 <span class="weui-icon-checked"></span>
             </div>
         </label>
@@ -47,7 +47,7 @@
     <div class="weui-cells__title"></div>
     <div class=" button js_show">
         <div class="page__bd page__bd_spacing">
-              <a class="weui-btn weui-btn_primary"  ng-click="getQrCode()">解锁</a>
+              <a class="weui-btn weui-btn_primary"  ng-click="getQrCode()">扫码付款</a>
         </div>
     </div>
     <div  class="js_dialog" style="opacity: 1;" ng-if="bigPhoto">
@@ -66,6 +66,7 @@
         <div class="weui-mask"></div>
         <div class="weui-dialog">
             <div class="weui-dialog__bd">
+                <span>{{ goodsBody}}</span>
                 <img style="width: 100%; height: 100%;" ng-src="{{QrCodeImage}}">
             </div>
             <div class="weui-dialog__ft">

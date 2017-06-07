@@ -20,9 +20,11 @@ angular.module('newsubwayApp')
     $scope.bigPhoto = false;
     $scope.topError = false;
     $scope.topErrorMsg = '';
+    // $scope.QrCodeImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAIAAAD2HxkiAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAFdElEQVR4nO3dwU7dMBRAwYL4/09GXXTbPOHWzrHzZtYIh4ijLK5sf3x/f/8COp/1A8C7EyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEPu6Z5nPzzNqH723+Orvqu4/Hn3Ps/7e0d//1P+Hf3PGu4AHEyHERAgxEUJMhBATIcRECLGb5oRXTpmnzZprrZ7jnT73O+X/YfLq4drALxFCToQQEyHERAgxEUJMhBCL54RXdps7jc7Hqn19o895yn6/3f4f5trrXcMbEiHERAgxEUJMhBATIcRECLFN54S7OX3f3az5ISv4EkJMhBATIcRECDERQkyEEBMhxMwJf6Ta7zfL6vNI+R/eNcRECDERQkyEEBMhxEQIMRFCbNM54W772Vbvu1s9P1z9/LvNOc/iSwgxEUJMhBATIcRECDERQkyEEIvnhPat/bHbfYPVeaTv+f/wjn8zbEWEEBMhxEQIMRFCTIQQEyHEPp69U+sUs+4/nMW9hXfyJYSYCCEmQoiJEGIihJgIISZCiN20n7DaJ1bdB3hldM622/PPWnf1PslZP38PX0KIiRBiIoSYCCEmQoiJEGIihNhN+wlXz5dG1109fztl3131fmZ5xvxwr3cKb0iEEBMhxEQIMRFCTIQQEyHEHnLu6G7zrlnrzpqLjlq97up571l8CSEmQoiJEGIihJgIISZCiIkQYvYT/ujnV9ttLrebZ/+9voQQEyHERAgxEUJMhBATIcRECLF4P+Hpc7zdzrc8/dzUWe/nrPfgSwgxEUJMhBATIcRECDERQkyEEPu6Z5nV87HVc7nRudNT70Wcta9v9fs8iy8hxEQIMRFCTIQQEyHERAgxEUJs03NHd5v7XTn9OUfXrc5Hde4osJAIISZCiIkQYiKEmAghJkKIbXru6JVT9svttu5u56POcspzvuZLCDERQkyEEBMhxEQIMRFCTIQQO2w/4ep1Z6nmeKPPc8q+wWo/5D18CSEmQoiJEGIihJgIISZCiIkQYvGccLd9cafvu6v2JT7VTXXcsAbwggghJkKIiRBiIoSYCCEmQoh91Q/QWL1/b3TdK85Z/bd1d5vfvuZLCDERQkyEEBMhxEQIMRFCTIQQ23ROOGsuZ1/f3N9fzd9G1z1rruhLCDERQkyEEBMhxEQIMRFCTIQQe8i5o1eq+/1GnX4f4ynsJwT+QoQQEyHERAgxEUJMhBATIcRumhOerrrncFR13+Os57ny7HsmfQkhJkKIiRBiIoSYCCEmQoiJEGI3nTt6yj631fsbR9cd/f273X94Zbf7A9tp+RltwIOJEGIihJgIISZCiIkQYiKEWHw/4W5zqivV/XtXTt8Fuvr53U8IDBAhxEQIMRFCTIQQEyHERAixeE545ZR7/1afY7n6nNLRdUefp9pHetbc1ZcQYiKEmAghJkKIiRBiIoSYCCG26ZzwdLPmgbN+ftTp9xCuXncuX0KIiRBiIoSYCCEmQoiJEGIihJg54X9ZPddafX7mrOdZvW+w2j95D19CiIkQYiKEmAghJkKIiRBiIoTYpnPC0+/fq+aBoz9fvefV57Veqc5BfW3HZ4K3IkKIiRBiIoSYCCEmQoiJEGLxnHDPuc3P7XZ/YDVn2+3ewt3moq+d3QA8gAghJkKIiRBiIoSYCCEmQoh97Dk5gffhSwgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIsd9KHxhSYyjpRwAAAABJRU5ErkJggg==';
+    $scope.QrCodeImage = '';
 
     $scope.getQrCode = getQrCode;
-    $scope.setGoodsId = setGoodsId;
+    $scope.setGoods = setGoods;
     $scope.scanQrCode = scanQrCode;
     $scope.chooseImage = chooseImage;
     $scope.setQrCodeImage = setQrCodeImage;
@@ -157,10 +159,10 @@ angular.module('newsubwayApp')
         setQrCodeImage(response.data)
     }
 
-    function setGoodsId(value) {
-        console.log(value)
-        $scope.goodsId = value;
 
+    function setGoods(id,body) {
+        $scope.goodsId = id;
+        $scope.goodsBody = body;
     }
 
     function Failed(error) {
@@ -196,7 +198,8 @@ angular.module('newsubwayApp')
             return;
         }
         var goodsId = response.data[0].id;
-        setGoodsId(goodsId)
+        var goodsBody = response.data[0].body;
+        setGoods(goodsId,goodsBody)
         setGoodsList( response.data);
     }
 
