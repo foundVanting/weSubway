@@ -158,6 +158,10 @@ angular.module('newsubwayApp')
                         $scope.certificate='';
 
                         setShowLoading(true,'支付成功')
+                        var b = $interval(function(){
+                            setShowLoading(false,'')
+                            $interval.cancel(b);
+                        },2000);
 
                     }
                 })
