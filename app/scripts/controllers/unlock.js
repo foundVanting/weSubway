@@ -80,7 +80,6 @@ angular.module('newsubwayApp')
             success: function(res) {
                 console.log(res);
                 var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-                alert(result)
                 setEquipNumber(result.split('_')[2])
             }
         })
