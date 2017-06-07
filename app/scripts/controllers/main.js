@@ -24,6 +24,10 @@ function MainCtrl($scope, $cookies, mainService,$http) {
     $scope.more = false;
     $scope.orders =[];
     $scope.busy = false;
+    $scope.usedCount = 0;
+    $scope.unusedCount = 0;
+    $scope.usingCount = 0;
+    $scope.recycledCount = 0;
 
     getOrders();
 
