@@ -104,6 +104,8 @@ Config.order_url = Config.url_prefix + "/orders";
 Config.qrcode_url = Config.url_prefix + "/qrcode";
 Config.weChat_config = Config.url_prefix + "/wechat/config";
 Config.upload_image_url = Config.url_prefix + "/image/url";
+Config.order_pay = Config.url_prefix + "/equipment/pay";
+
 
 
 var Constants = {};

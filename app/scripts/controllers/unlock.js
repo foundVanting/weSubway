@@ -13,6 +13,7 @@ angular.module('newsubwayApp')
     $scope.user=$cookies.getObject("user");
     $scope.companyId=12;
     $scope.showLoading=false;
+    $scope.loadingMsg='';
     $scope.equipNumber='';
     $scope.certificate='';
     $scope.showCamera=true;
@@ -111,7 +112,7 @@ angular.module('newsubwayApp')
             isShowProgressTips: 1, // 默认为1，显示进度提示
             success: function (res){
                 var serverId = res.serverId; // 返回图片的服务器端ID
-                setShowLoading(true)
+                setShowLoading(true,'数据加载中')
                 getImageUrl(serverId)
             }
         });
@@ -124,7 +125,7 @@ angular.module('newsubwayApp')
     function getImageUrl(serverId) {
         unlockService.getImageUrl(serverId)
             .then(function (response) {
-                setShowLoading(false)
+                setShowLoading(false,'数据加载中')
                 response = response.data;
                 var status = response.status || 0;
                 var msg = Constants.error_unknown;
@@ -140,16 +141,37 @@ angular.module('newsubwayApp')
             .catch(Failed)
     }
     function setQrCodeImage(data) {
+        console.log('before check is pay');
+        var a = $interval(function(){
+            unlockService.isPay($scope.equipNumber)
+                .then(function (response) {
+                    console.log('check is pay');
+                    response = response.data;
+                    var status = response.status || 0;
+                    var msg = Constants.error_unknown;
+                    if (status == 1) {
+                        console.log('cancel check is pay');
+                        $interval.cancel(a);
+                        $scope.QrCodeImage='';
+                        $scope.equipNumber = '';
+                        $scope.setGoods('','');
+                        $scope.certificate='';
+
+                        setShowLoading(true,'支付成功')
+
+                    }
+                })
+                .catch(Failed)
+        },3000);
+        console.log('after check is pay');
         $scope.QrCodeImage = data;
     }
-
     function unlockComplete(response) {
-        setShowLoading(false)
+        setShowLoading(false,'数据加载中')
         console.log(response)
         response = response.data;
         var status = response.status || 0;
         var msg = Constants.error_unknown;
-
         if (status == 0) {
             msg = response.msg || msg;
             console.log("status:" + status);
@@ -173,15 +195,22 @@ angular.module('newsubwayApp')
         $scope.showError = true;
         $scope.errorMessage = msg;
     }
-    function setShowLoading(value){
-        $scope.showLoading=value;
+    function setShowLoading(value,msg)
+    {
+        if (value == true){
+            $scope.showLoading=value;
+            $scope.loadingMsg = msg;
+        }else {
+            $scope.showLoading=false;
+            $scope.loadingMsg = '';
+        }
     }
     function getQrCode() {
         if (angular.isNull($scope.equipNumber) || angular.isNull($scope.goodsId) || angular.isNull($scope.companyId) || angular.isNull($scope.certificate)) {
             showError('参数为空');
             return;
         }
-        setShowLoading(true)
+        setShowLoading(true,'数据加载中')
         unlockService.getQrCode($scope.equipNumber, $scope.goodsId, $scope.user.id, $scope.companyId, $scope.certificate)
             .then(unlockComplete)
             .catch(Failed);
