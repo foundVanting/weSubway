@@ -195,6 +195,7 @@ angular.module('newsubwayApp')
         $scope.showError = true;
         $scope.errorMessage = msg;
     }
+    // todo 未验证
     function setShowLoading(value,msg)
     {
         if (value == true){
