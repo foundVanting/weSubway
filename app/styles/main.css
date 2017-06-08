@@ -21,6 +21,16 @@
     text-align: center;
 }
 
+.sub-title {
+    margin: 10px 0 30px;
+    font-weight: normal;
+    font-size: 1.5rem;
+    color: #3cc51f;
+    text-align: center;
+}
+.user-title {
+    margin: 30px 0 10px;
+}
 .weui-navbar .weui-badge {
     position: absolute;
     top: .1em;
