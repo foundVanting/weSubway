@@ -130,6 +130,22 @@ function TabBar($rootScope,$scope, $location) {
 
 // Dialog
 
+// usage
+// var dialog = {
+//     "leftBtn":"回收",
+//     "leftBtnCallBack":function(){
+//         console.log("leftBtnCallBack");
+//         return true;
+//     },
+//     "rightBtn":"关闭",
+//     "rightBtnCallBack":function() {
+//         console.log("rightBtnCallBack");
+//         return true;
+//     }
+// }
+// $rootScope.$broadcast("dialogShow",dialog);
+
+
 angular.module('newsubwayApp')
     .controller('Dialog', Dialog);
 
