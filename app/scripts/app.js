@@ -46,10 +46,11 @@ angular
                 controllerAs: 'main',
                 resolve: resolver(true)
             })
-            .when('/about', {
-                templateUrl: 'views/about.html',
-                controller: 'AboutCtrl',
-                controllerAs: 'about'
+            .when('/user', {
+                templateUrl: 'views/user.html',
+                controller: 'UserCtrl',
+                controllerAs: 'user',
+                resolve: resolver(true)
             })
             .when('/login', {
                 templateUrl: 'views/login.html',

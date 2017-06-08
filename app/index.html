@@ -39,10 +39,17 @@
                                 <i class="iconfont icon-jilu"></i>
                                 <p class="weui-tabbar__label">回收</p>
                             </a>
+
                             <a ng-click="tb.go('/stats')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/stats"}'>
                                 <i class="iconfont icon-tongji"></i>
                                 <p class="weui-tabbar__label">统计</p>
                             </a>
+
+                            <a ng-click="tb.go('/user')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/user"}'>
+                                <i class="iconfont icon-jilu"></i>
+                                <p class="weui-tabbar__label">个人中心</p>
+                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -93,7 +100,7 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/user.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/services/loginservice.js"></script>
         <script src="scripts/services/mainservice.js"></script>

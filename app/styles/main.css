@@ -1,18 +1,24 @@
 .weui-form-preview {
-   margin: 15px 0;
+    margin: 15px 0;
 }
 
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
     display: none !important;
 }
 
-  .container {
+.container {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
 }
+
 .subway-title {
     margin: 30px 0;
     font-weight: 400;
@@ -21,11 +27,24 @@
     text-align: center;
 }
 
+.sub-title {
+    margin: 10px 0 30px;
+    font-weight: normal;
+    font-size: 1.5rem;
+    color: #3cc51f;
+    text-align: center;
+}
+
+.user-title {
+    margin: 30px 0 10px;
+}
+
 .weui-navbar .weui-badge {
     position: absolute;
     top: .1em;
     right: .1em;
 }
+
 .weui-navbar .badge-gray {
     background: #cccccc;
 }
@@ -33,6 +52,25 @@
 .iconfont {
     font-size: 1.2rem;
 }
+
 .weui-bar__item_on .iconfont {
-  color: #09bb07;
+    color: #09bb07;
+}
+
+.icon-shuaxin {
+    width: 50px;
+    height: 50px;
+    float: left;
+    border-radius: 50%;
+    background: #ed4630;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    color: #fff;
+    margin-left: 15px;
+    cursor: pointer;
+    position: fixed;
+    right: 20px;
+    bottom: 100px;
+    z-index: 1000
 }
