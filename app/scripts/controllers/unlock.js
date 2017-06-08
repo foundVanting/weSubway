@@ -158,6 +158,7 @@ angular.module('newsubwayApp')
                         $scope.QrCodeImage='';
                         $scope.equipNumber = '';
                         $scope.certificate='';
+                        $scope.showCamera=true
 
                         var dialog = {
                             "title":"成功",
