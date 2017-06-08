@@ -75,8 +75,8 @@ function LoginCtrl($cookies, $location, loginService,$rootScope) {
             $rootScope.$broadcast("dialogShow",dialog);
             return;
         }
-        window.location=Config.url_prefix+"/user/"+user.id+"/wechat";
-        // $location.path('/');
+        // window.location=Config.url_prefix+"/user/"+user.id+"/wechat";
+        $location.path('/');
 
     }
 

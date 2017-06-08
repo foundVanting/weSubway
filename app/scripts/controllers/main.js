@@ -30,6 +30,7 @@ function MainCtrl($scope, $cookies, mainService,$rootScope) {
     $scope.loadMore= loadMore;
     $scope.showImage = showImage;
     $scope.hideImage= hideImage;
+    $scope.refresh= refresh;
 
     getOrders();
     function hideImage() {
@@ -154,6 +155,10 @@ function MainCtrl($scope, $cookies, mainService,$rootScope) {
     function changeStatus(status) {
         $scope.page =1;
         $scope.status = status;
+        getOrders();
+    }
+    function refresh() {
+        $scope.page =1;
         getOrders();
     }
 }
