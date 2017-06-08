@@ -1,6 +1,9 @@
 .weui-form-preview {
     margin: 15px 0;
 }
+.statsBtn{
+    width: 32%;
+}
 
 [ng\:cloak],
 [ng-cloak],
