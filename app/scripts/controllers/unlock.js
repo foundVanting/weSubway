@@ -182,11 +182,10 @@ angular.module('newsubwayApp')
         var msg = Constants.error_unknown;
         if (status == 0) {
             msg = response.msg || msg;
-            if(msg== '在数据库不存在'){
-                msg == '设备不存在';
-            }
-            console.log("status:" + status);
 
+            if(msg == '在数据库不存在'){
+                msg = '设备不存在';
+            }
             var dialog = {
                 "title":"错误",
                 "message":msg,
