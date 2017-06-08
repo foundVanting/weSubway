@@ -62,6 +62,11 @@ angular
                 controllerAs: 'unlock',
                 resolve: resolver(true)
             })
+            .when('/stats', {
+              templateUrl: 'views/stats.html',
+              controller: 'StatsCtrl',
+              controllerAs: 'stats'
+            })
             .otherwise({
                 redirectTo: '/'
             });

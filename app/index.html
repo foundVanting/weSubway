@@ -39,6 +39,10 @@
                                 <i class="iconfont icon-jilu"></i>
                                 <p class="weui-tabbar__label">回收</p>
                             </a>
+                            <a ng-click="tb.go('/stats')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/stats"}'>
+                                <i class="iconfont icon-tongji"></i>
+                                <p class="weui-tabbar__label">统计</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -98,6 +102,7 @@
         <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
         <script src="scripts/directives/autofocuswhen.js"></script>
 
+        <script src="scripts/controllers/stats.js"></script>
         <!-- endbuild -->
 </body>
 
