@@ -9,7 +9,7 @@
  */
 
 angular.module('newsubwayApp')
-    .controller('UnlockCtrl', ['$scope','$cookies','unlockService','$location','$http','$interval',function ($scope,$cookies, unlockService,$location,$http,$interval) {
+    .controller('UnlockCtrl', ['$scope','$cookies','unlockService','$location','$http','$interval','$rootScope',function ($scope,$cookies, unlockService,$location,$http,$interval,$rootScope) {
     $scope.user=$cookies.getObject("user");
     $scope.companyId=12;
     $scope.showLoading=false;
@@ -130,7 +130,12 @@ angular.module('newsubwayApp')
                 if (status == 0) {
                     msg = response.msg || msg;
                     console.log("status:" + status);
-                    showError(msg);
+                    var dialog = {
+                        "title":"错误",
+                        "message":msg,
+                        "rightBtn":"确定",
+                    }
+                    $rootScope.$broadcast("dialogShow",dialog);
                     return;
                 }
                 setShowCamera(false)
@@ -152,14 +157,14 @@ angular.module('newsubwayApp')
                         $interval.cancel(a);
                         $scope.QrCodeImage='';
                         $scope.equipNumber = '';
-                        $scope.setGoods('','');
                         $scope.certificate='';
 
-                        setShowLoading(true,'支付成功')
-                        var b = $interval(function(){
-                            setShowLoading(false,'')
-                            $interval.cancel(b);
-                        },2000);
+                        var dialog = {
+                            "title":"成功",
+                            "message":'支付成功',
+                            "rightBtn":"确定",
+                        }
+                        $rootScope.$broadcast("dialogShow",dialog);
 
                     }
                 })
@@ -177,7 +182,13 @@ angular.module('newsubwayApp')
         if (status == 0) {
             msg = response.msg || msg;
             console.log("status:" + status);
-            showError(msg);
+
+            var dialog = {
+                "title":"错误",
+                "message":msg,
+                "rightBtn":"确定",
+            }
+            $rootScope.$broadcast("dialogShow",dialog);
             return;
         }
         setQrCodeImage(response.data)
@@ -190,13 +201,15 @@ angular.module('newsubwayApp')
     }
 
     function Failed(error) {
-        showError(error.statusText);
+        var dialog = {
+            "title":"错误",
+            "message":error.statusText,
+            "rightBtn":"确定",
+        }
+        $rootScope.$broadcast("dialogShow",dialog);
+        return
     }
 
-    function showError(msg) {
-        $scope.showError = true;
-        $scope.errorMessage = msg;
-    }
     // todo 未验证
     function setShowLoading(value,msg)
     {
@@ -211,15 +224,28 @@ angular.module('newsubwayApp')
     function getQrCode() {
         // angular.isNull($scope.companyId)
         if (angular.isNull($scope.equipNumber)) {
-            showError('请填写设备号');
+
+        var dialog = {
+            "message":"请填写设备号",
+            "rightBtn":"确定",
+        }
+        $rootScope.$broadcast("dialogShow",dialog);
             return;
         }
         if( angular.isNull($scope.goodsId) ){
-            showError('请选择套餐');
+            var dialog = {
+                "message":"请选择套餐",
+                "rightBtn":"确定",
+            }
+            $rootScope.$broadcast("dialogShow",dialog);
             return;
         }
         if( angular.isNull($scope.certificate) ){
-            showError('凭证不能为空');
+            var dialog = {
+                "message":"凭证不能为空",
+                "rightBtn":"确定",
+            }
+            $rootScope.$broadcast("dialogShow",dialog);
             return;
         }
         setShowLoading(true,'数据加载中')
@@ -237,7 +263,12 @@ angular.module('newsubwayApp')
         if (status == 0) {
             msg = response.msg || msg;
             console.log("status:" + status);
-            showError(msg);
+            var dialog = {
+                "title":"错误",
+                "message":msg,
+                "rightBtn":"确定",
+            }
+            $rootScope.$broadcast("dialogShow",dialog);
             return;
         }
         var goodsId = response.data[0].id;

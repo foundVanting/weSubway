@@ -11,9 +11,9 @@ angular.module('newsubwayApp')
     .controller('LoginCtrl', LoginCtrl);
 
     
-LoginCtrl.$injector = ['$cookies', '$location', 'loginService'];
+LoginCtrl.$injector = ['$cookies', '$location', 'loginService','$rootScope'];
 
-function LoginCtrl($cookies, $location, loginService) {
+function LoginCtrl($cookies, $location, loginService,$rootScope) {
     var vm = this;
 
     // init data
@@ -44,24 +44,39 @@ function LoginCtrl($cookies, $location, loginService) {
         if (status == 0) {
             msg = response.msg || msg;
             console.log("status:" + status);
-            showError(msg);
+            var dialog = {
+                "title":"错误",
+                "message":msg,
+                "rightBtn":"确定",
+            }
+            $rootScope.$broadcast("dialogShow",dialog);
             return;
         }
 
         var user = response.data || {};
         if (angular.isNull(user.username)) {
             console.log("user:" + user);
-            showError(msg);
+            var dialog = {
+                "title":"错误",
+                "message":msg,
+                "rightBtn":"确定",
+            }
+            $rootScope.$broadcast("dialogShow",dialog);
             return;
         }
 
         $cookies.putObject("user", user);
         if (angular.isNull(user.id)) {
-            showError(msg);
+            var dialog = {
+                "title":"错误",
+                "message":msg,
+                "rightBtn":"确定",
+            }
+            $rootScope.$broadcast("dialogShow",dialog);
             return;
         }
-        // window.location=Config.url_prefix+"/user/"+user.id+"/wechat";
-        $location.path('/');
+        window.location=Config.url_prefix+"/user/"+user.id+"/wechat";
+        // $location.path('/');
 
     }
 
@@ -72,11 +87,12 @@ function LoginCtrl($cookies, $location, loginService) {
 
     function loginFailed(error) {
         console.log(error);
-        showError(error.statusText);
-    }
+        var dialog = {
+            "title":"错误",
+            "message":error.statusText,
+            "rightBtn":"确定",
+        }
+        $rootScope.$broadcast("dialogShow",dialog);
 
-    function showError(msg) {
-        vm.showError = true;
-        vm.errorMessage = msg;
     }
 }

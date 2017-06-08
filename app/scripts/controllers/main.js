@@ -10,9 +10,9 @@
 angular.module('newsubwayApp')
     .controller('MainCtrl', MainCtrl);
     
-MainCtrl.$injector = ['$scope', '$cookies', 'mainService','$http'];
+MainCtrl.$injector = ['$scope', '$cookies', 'mainService','$rootScope'];
 
-function MainCtrl($scope, $cookies, mainService,$http) {
+function MainCtrl($scope, $cookies, mainService,$rootScope) {
     $scope.uid = $cookies.getObject("user").id;
     $scope.status = 3;
     $scope.imageShowStatus=false;
@@ -69,9 +69,15 @@ function MainCtrl($scope, $cookies, mainService,$http) {
         if (status == 0) {
             msg = response.msg || msg;
             console.log("status:" + status);
-            showError(msg);
+            var dialog = {
+                "title":"错误",
+                "message":msg,
+                "rightBtn":"确定",
+            }
+            $rootScope.$broadcast("dialogShow",dialog);
             return;
         }
+        $scope.page =1;
         getOrders();
     }
 
@@ -86,7 +92,13 @@ function MainCtrl($scope, $cookies, mainService,$http) {
     }
     function getOrders() {
         if (angular.isNull($scope.uid) || angular.isNull($scope.status)) {
-            return showError('参数错误');
+            var dialog = {
+                "title":"错误",
+                "message":'参数错误',
+                "rightBtn":"确定",
+            }
+            $rootScope.$broadcast("dialogShow",dialog);
+            return
         }
         mainService.orders($scope.uid, $scope.status,$scope.page)
             .then(ordersComplete)
@@ -102,7 +114,12 @@ function MainCtrl($scope, $cookies, mainService,$http) {
         if (status == 0) {
             msg = response.msg || msg;
             console.log("status:" + status);
-            showError(msg);
+            var dialog = {
+                "title":"错误",
+                "message":msg,
+                "rightBtn":"确定",
+            }
+            $rootScope.$broadcast("dialogShow",dialog);
             return;
         }
 
@@ -123,13 +140,17 @@ function MainCtrl($scope, $cookies, mainService,$http) {
 
     function ordersFailed(error) {
         console.log(error);
-        showError(error.statusText);
+        var dialog = {
+            "title":"错误",
+            "message":msg,
+            "rightBtn":"确定",
+        }
+        $rootScope.$broadcast("dialogShow",dialog);
+        return
+
     }
 
-    function showError(msg) {
-        $scope.showError = true;
-        $scope.errorMessage = msg;
-    }
+
     function changeStatus(status) {
         $scope.page =1;
         $scope.status = status;

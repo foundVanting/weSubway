@@ -111,20 +111,7 @@ function TabBar($rootScope,$scope, $location) {
     });
 
     function go(p) {
-        var dialog = {
-            "leftBtn":"回收",
-            "leftBtnCallBack":function(){
-                console.log("leftBtnCallBack");
-                return true;
-            },
-            "rightBtn":"关闭",
-            "rightBtnCallBack":function() {
-                console.log("rightBtnCallBack");
-                return true;
-            }
-        }
-        $rootScope.$broadcast("dialogShow",dialog);
-        // $location.path(p);
+        $location.path(p);
     }
 }
 
