@@ -89,9 +89,7 @@ angular.module('newsubwayApp')
     }
 
     function setCertificateImage(value) {
-
             $scope.certificate= value;
-
     }
     function chooseImage() {
         wx.chooseImage({
@@ -211,11 +209,21 @@ angular.module('newsubwayApp')
         }
     }
     function getQrCode() {
-        if (angular.isNull($scope.equipNumber) || angular.isNull($scope.goodsId) || angular.isNull($scope.companyId) || angular.isNull($scope.certificate)) {
-            showError('参数为空');
+        // angular.isNull($scope.companyId)
+        if (angular.isNull($scope.equipNumber)) {
+            showError('请填写设备号');
+            return;
+        }
+        if( angular.isNull($scope.goodsId) ){
+            showError('请选择套餐');
+            return;
+        }
+        if( angular.isNull($scope.certificate) ){
+            showError('凭证不能为空');
             return;
         }
         setShowLoading(true,'数据加载中')
+        console.log($scope.goodsId);
         unlockService.getQrCode($scope.equipNumber, $scope.goodsId, $scope.user.id, $scope.companyId, $scope.certificate)
             .then(unlockComplete)
             .catch(Failed);
@@ -223,6 +231,7 @@ angular.module('newsubwayApp')
 
     function goodsComplete(response) {
         response = response.data;
+        console.log(response)
         var status = response.status || 0;
         var msg = Constants.error_unknown;
         if (status == 0) {
