@@ -67,33 +67,6 @@ angular
             });
     });
 
-
-// TabBar
-
-angular.module('newsubwayApp')
-    .controller('TabBar', TabBar);
-
-TabBar.$injector = ['$scope', '$location'];
-
-function TabBar($scope, $location) {
-    var vm = this;
-    vm.path = $location.path();
-    vm.go = go;
-    vm.show=true
-
-    $scope.$on('$routeChangeSuccess', function(event, current, previous) {
-        vm.path = current.originalPath;
-    });
-
-    $scope.$on('$viewContentLoaded',function(){
-        console.log("$viewContentLoaded");
-    });
-
-    function go(p) {
-        $location.path(p);
-    }
-}
-
 // 配置
 var Config = {};
 // 所有地址必须为当前host
@@ -113,4 +86,101 @@ Constants.error_unknown = "未知错误";
 // function
 angular.isNull = function function_name(val) {
     return angular.isUndefined(val) || val === null || val === '';
+}
+
+
+// TabBar
+
+angular.module('newsubwayApp')
+    .controller('TabBar', TabBar);
+
+TabBar.$injector = ['$rootScope','$scope', '$location'];
+
+function TabBar($rootScope,$scope, $location) {
+    var vm = this;
+    vm.path = $location.path();
+    vm.go = go;
+    vm.show=true
+
+    $scope.$on('$routeChangeSuccess', function(event, current, previous) {
+        vm.path = current.originalPath;
+    });
+
+    $scope.$on('$viewContentLoaded',function(){
+        console.log("$viewContentLoaded");
+    });
+
+    function go(p) {
+        var dialog = {
+            "leftBtn":"回收",
+            "leftBtnCallBack":function(){
+                console.log("leftBtnCallBack");
+                return true;
+            },
+            "rightBtn":"关闭",
+            "rightBtnCallBack":function() {
+                console.log("rightBtnCallBack");
+                return true;
+            }
+        }
+        $rootScope.$broadcast("dialogShow",dialog);
+        // $location.path(p);
+    }
+}
+
+// Dialog
+
+angular.module('newsubwayApp')
+    .controller('Dialog', Dialog);
+
+Dialog.$injector = ['$rootScope','$scope'];
+
+function Dialog($rootScope,$scope) {
+    var vm = this;
+    vm.show = false;
+
+    vm.leftBtnClick = leftBtnClick;
+    vm.rightBtnClick = rightBtnClick;
+
+    $scope.$on('dialogShow', function(event, dialog) {
+        vm.show = true;
+        dialog = dialog || {};
+        vm.title = dialog.title || "警告";
+        vm.message = dialog.message || "";
+        if(dialog.leftBtn){
+            vm.leftBtn = dialog.leftBtn;
+            vm.leftBtnCallBack = dialog.leftBtnCallBack;
+        }
+
+        if(dialog.rightBtn){
+            vm.rightBtn = dialog.rightBtn;
+            vm.rightBtnCallBack = dialog.rightBtnCallBack;
+        } else {
+            vm.rightBtn = "关闭";
+        }
+    });
+
+    function leftBtnClick() {
+        var r = true;
+        if(vm.leftBtnCallBack){
+            r = vm.leftBtnCallBack();
+        }
+
+        if(r){
+            vm.show = false;
+        }
+
+    }
+
+    function rightBtnClick() {
+        var r = true;
+        if(vm.rightBtnCallBack){
+            r = vm.rightBtnCallBack();
+        }
+
+        if(r){
+            vm.show = false;
+        }
+
+    }
 }

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=0" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=0">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -30,7 +30,7 @@
                 <div class="page__bd" style="height: 100%;">
                     <div class="weui-tab">
                         <div class="weui-tab__panel" ng-view> </div>
-                        <div class="weui-tabbar" style="position: fixed" ng-controller="TabBar as tb" ng-show="tb.path != '/login'">
+                        <div class="weui-tabbar" ng-controller="TabBar as tb" ng-show="tb.path != '/login'">
                             <a ng-click="tb.go('/')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/"}'>
                                 <i class="iconfont icon-unlock"></i>
                                 <p class="weui-tabbar__label">解锁</p>
@@ -43,55 +43,60 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-
-
-    <!--<div class="container">-->
+        <div  ng-controller="Dialog as d" ng-show="d.show">
+            <div class="weui-mask"></div>
+            <div class="weui-dialog">
+                <div class="weui-dialog__hd"><strong class="weui-dialog__title">{{d.title}}</strong></div>
+                <div class="weui-dialog__bd">{{d.message}}</div>
+                <div class="weui-dialog__ft">
+                    <a ng-show="d.leftBtn" ng-click="d.leftBtnClick();" class="weui-dialog__btn weui-dialog__btn_primary">{{d.leftBtn}}</a>
+                    <a ng-show="d.rightBtn" ng-click="d.rightBtnClick();" class="weui-dialog__btn weui-dialog__btn_primary">{{d.rightBtn}}</a>
+                </div>
+            </div>
+        </div>
+        <!--<div class="container">-->
         <!--<div class="weui-tab">-->
-            <!--<div class="weui-tab__panel" ng-view>-->
-
-            <!--</div>-->
-            <!--<div class="weui-tabbar" ng-controller="TabBar as tb" ng-show="tb.path != '/login'">-->
-                <!--<a ng-click="tb.go('/')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/"}'>-->
-                    <!--<i class="iconfont icon-unlock"></i>-->
-                    <!--<p class="weui-tabbar__label">解锁</p>-->
-                <!--</a>-->
-                <!--<a ng-click="tb.go('/log')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/log"}'>-->
-                    <!--<i class="iconfont icon-jilu"></i>-->
-                    <!--<p class="weui-tabbar__label">记录</p>-->
-                <!--</a>-->
-            <!--</div>-->
+        <!--<div class="weui-tab__panel" ng-view>-->
         <!--</div>-->
-    <!--</div>-->
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-messages/angular-messages.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angular-pull-to-refresh/dist/angular-pull-to-refresh.min.js"></script>
-
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/about.js"></script>
-    <script src="scripts/controllers/login.js"></script>
-    <script src="scripts/services/loginservice.js"></script>
-    <script src="scripts/services/mainservice.js"></script>
-    <script src="scripts/controllers/unlock.js"></script>
-    <script src="scripts/services/unlockservice.js"></script>
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-    <script src="scripts/directives/autofocuswhen.js"></script>
-    <!-- endbuild -->
+        <!--<div class="weui-tabbar" ng-controller="TabBar as tb" ng-show="tb.path != '/login'">-->
+        <!--<a ng-click="tb.go('/')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/"}'>-->
+        <!--<i class="iconfont icon-unlock"></i>-->
+        <!--<p class="weui-tabbar__label">解锁</p>-->
+        <!--</a>-->
+        <!--<a ng-click="tb.go('/log')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/log"}'>-->
+        <!--<i class="iconfont icon-jilu"></i>-->
+        <!--<p class="weui-tabbar__label">记录</p>-->
+        <!--</a>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!-- build:js(.) scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/angular-aria/angular-aria.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-messages/angular-messages.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-touch/angular-touch.js"></script>
+        <script src="bower_components/angular-pull-to-refresh/dist/angular-pull-to-refresh.min.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/services/loginservice.js"></script>
+        <script src="scripts/services/mainservice.js"></script>
+        <script src="scripts/controllers/unlock.js"></script>
+        <script src="scripts/services/unlockservice.js"></script>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+        <script src="scripts/directives/autofocuswhen.js"></script>
+        <!-- endbuild -->
 </body>
 
 </html>
