@@ -219,7 +219,7 @@ angular.module('newsubwayApp')
             return;
         }
         if( angular.isNull($scope.certificate) ){
-            showError('参数为空');
+            showError('凭证不能为空');
             return;
         }
         setShowLoading(true,'数据加载中')
