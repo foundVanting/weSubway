@@ -65,7 +65,8 @@ angular
             .when('/stats', {
               templateUrl: 'views/stats.html',
               controller: 'StatsCtrl',
-              controllerAs: 'stats'
+              controllerAs: 'stats',
+              resolve: resolver(true)
             })
             .otherwise({
                 redirectTo: '/'
@@ -84,7 +85,7 @@ Config.weChat_config = Config.url_prefix + "/wechat/config";
 Config.upload_image_url = Config.url_prefix + "/image/url";
 Config.order_pay = Config.url_prefix + "/equipment/pay";
 Config.stats = Config.url_prefix + "/stats";
-Config.recycle = Config.url_prefix + "/recycle";
+Config.logout = Config.url_prefix + "/admin/logout";
 
 
 

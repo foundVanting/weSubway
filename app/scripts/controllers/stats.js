@@ -58,7 +58,7 @@ function StatsCtrl($cookies,$location,$rootScope,$scope,statsService) {
         if(type==1){
             $scope.text = '今日';
         }else if(type ==2){
-            $scope.text = '这周';
+            $scope.text = '本周';
         }else {
             $scope.text = '本月';
         }
