@@ -14,7 +14,7 @@
         </div>
         <div class="weui-navbar__item" ng-click="changeStatus(4)" ng-class='{ "weui-bar__item_on":status==4}'>
             已回收
-            <span class="weui-badge ">{{recycledCount}}</span>
+            <span class="weui-badge ">{{ recycledCount<99?recycledCount:'99+' }}</span>
         </div>
     </div>
     <!--暂没看懂这个怎么用 有空了再集成-->
@@ -35,7 +35,7 @@
                 </div>
                 <div class="weui-form-preview__bd">
                     <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">商品</label>
+                        <label class="weui-form-preview__label">套餐</label>
                         <span class="weui-form-preview__value">{{order.goods_name }}</span>
                     </div>
                     <div class="weui-form-preview__item">
@@ -56,6 +56,9 @@
                 </div>
                 <div class="weui-form-preview__ft" ng-if="status ==3">
                     <a class="weui-form-preview__btn weui-form-preview__btn_primary"  ng-click="recycle(order.id)">回收</a>
+                </div>
+                <div class="weui-form-preview__ft" ng-if="status ==4">
+                    <a class="weui-form-preview__btn weui-form-preview__btn_primary"  ng-click="reused(order.quinumber)">再次使用</a>
                 </div>
             </div>
 

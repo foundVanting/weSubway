@@ -14,7 +14,7 @@ function StatsCtrl($cookies,$location,$rootScope,$scope,statsService) {
     $scope.changeType= changeType;
     $scope.uid = $cookies.getObject("user").id;
     $scope.type = 1;
-    $scope.text = '当天';
+    $scope.text = '今日';
     changeType($scope.type )
 
     function statsComplete(response) {
@@ -56,7 +56,7 @@ function StatsCtrl($cookies,$location,$rootScope,$scope,statsService) {
     }
     function changeType(type) {
         if(type==1){
-            $scope.text = '当天';
+            $scope.text = '今日';
         }else if(type ==2){
             $scope.text = '这周';
         }else {

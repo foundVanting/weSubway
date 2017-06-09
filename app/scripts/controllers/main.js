@@ -10,9 +10,9 @@
 angular.module('newsubwayApp')
     .controller('MainCtrl', MainCtrl);
     
-MainCtrl.$injector = ['$scope', '$cookies', 'mainService','$rootScope'];
+MainCtrl.$injector = ['$scope', '$cookies', 'mainService','$rootScope','$location'];
 
-function MainCtrl($scope, $cookies, mainService,$rootScope) {
+function MainCtrl($scope, $cookies, mainService,$rootScope,$location) {
     $scope.uid = $cookies.getObject("user").id;
     $scope.status = 3;
     $scope.imageShowStatus=false;
@@ -31,8 +31,18 @@ function MainCtrl($scope, $cookies, mainService,$rootScope) {
     $scope.showImage = showImage;
     $scope.hideImage= hideImage;
     $scope.refresh= refresh;
+    $scope.reused= reused;
 
     getOrders();
+
+    function reused(equipNumber) {
+        $cookies.put('equipNumber',equipNumber);
+        var equipNumber = $cookies.get('equipNumber');
+        console.log(equipNumber)
+        $location.path('/');
+
+
+    }
     function hideImage() {
         $scope.imageUrl = '';
         $scope.imageShowStatus = false;

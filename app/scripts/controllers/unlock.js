@@ -9,12 +9,14 @@
  */
 
 angular.module('newsubwayApp')
-    .controller('UnlockCtrl', ['$scope','$cookies','unlockService','$location','$http','$interval','$rootScope',function ($scope,$cookies, unlockService,$location,$http,$interval,$rootScope) {
+    .controller('UnlockCtrl',UnlockCtrl);
+UnlockCtrl.$injector = ['$scope','$cookies','unlockService','$location','$http','$interval','$rootScope','mainService'];
+function UnlockCtrl ($scope,$cookies, unlockService,$location,$http,$interval,$rootScope,mainService) {
     $scope.user=$cookies.getObject("user");
     $scope.companyId=12;
     $scope.showLoading=false;
     $scope.loadingMsg='';
-    $scope.equipNumber='';
+    $scope.equipNumber=$cookies.get('equipNumber')?$cookies.get('equipNumber'):'';
     $scope.certificate='';
     $scope.showCamera=true;
     $scope.equipNumberFocus=false;
@@ -61,7 +63,7 @@ angular.module('newsubwayApp')
     function setBigPhoto(value) {
         $scope.bigPhoto =value
     }
-    
+
     function checkEquipNumber() {
         if ($scope.equipNumber.length !== 6) {
             $scope.equipNumberFocus=true;
@@ -73,6 +75,7 @@ angular.module('newsubwayApp')
     function setEquipNumber(value) {
         $scope.$apply(function () {
             $scope.equipNumber=value;
+            $cookies.put('equipNumber',value)
         });
     }
 
@@ -89,7 +92,7 @@ angular.module('newsubwayApp')
     }
 
     function setCertificateImage(value) {
-            $scope.certificate= value;
+        $scope.certificate= value;
     }
     function chooseImage() {
         wx.chooseImage({
@@ -156,15 +159,14 @@ angular.module('newsubwayApp')
                         console.log('cancel check is pay');
                         $interval.cancel(a);
                         $scope.QrCodeImage='';
-                        $scope.equipNumber = '';
                         $scope.certificate='';
                         $scope.showCamera=true
-
                         var dialog = {
                             "title":"成功",
-                            "message":'支付成功',
+                            "message":$scope.equipNumber+'支付成功',
                             "rightBtn":"确定",
                         }
+                        $scope.equipNumber = '';
                         $rootScope.$broadcast("dialogShow",dialog);
 
                     }
@@ -185,6 +187,23 @@ angular.module('newsubwayApp')
 
             if(msg == '在数据库不存在'){
                 msg = '设备不存在';
+            }else if (msg == '设备未回收'){
+                var orderId  = response.data;
+                console.log('orderId:'+orderId);
+                var dialog = {
+                    "title":"错误",
+                    "message":msg,
+                    "rightBtn":"确定",
+                    "leftBtn":"回收并使用",
+                    "leftBtnCallBack":function(){
+                        mainService.recycle(orderId)
+                            .then(recycleComplete)
+                            .catch(Failed);
+                        return true;
+                    },
+                }
+                $rootScope.$broadcast("dialogShow",dialog);
+                return;
             }
             var dialog = {
                 "title":"错误",
@@ -195,6 +214,24 @@ angular.module('newsubwayApp')
             return;
         }
         setQrCodeImage(response.data)
+    }
+    function recycleComplete(response) {
+        response = response.data;
+        var status = response.status || 0;
+        var msg = Constants.error_unknown;
+
+        if (status == 0) {
+            msg = response.msg || msg;
+            console.log("status:" + status);
+            var dialog = {
+                "title":"错误",
+                "message":msg,
+                "rightBtn":"确定",
+            }
+            $rootScope.$broadcast("dialogShow",dialog);
+            return;
+        }
+        getQrCode();
     }
 
 
@@ -228,13 +265,14 @@ angular.module('newsubwayApp')
         // angular.isNull($scope.companyId)
         if (angular.isNull($scope.equipNumber)) {
 
-        var dialog = {
-            "message":"请填写设备号",
-            "rightBtn":"确定",
-        }
-        $rootScope.$broadcast("dialogShow",dialog);
+            var dialog = {
+                "message":"请填写设备号",
+                "rightBtn":"确定",
+            }
+            $rootScope.$broadcast("dialogShow",dialog);
             return;
         }
+        $cookies.put('equipNumber',$scope.equipNumber)
         if( angular.isNull($scope.goodsId) ){
             var dialog = {
                 "message":"请选择套餐",
@@ -263,7 +301,8 @@ angular.module('newsubwayApp')
         console.log(response)
         var status = response.status || 0;
         var msg = Constants.error_unknown;
-        if (status == 0) {
+        console.log(status)
+        if (status === '0') {
             msg = response.msg || msg;
             console.log("status:" + status);
             var dialog = {
@@ -287,6 +326,6 @@ angular.module('newsubwayApp')
     }
 
     function setGoodsList(value) {
-       $scope.goodsList = value
+        $scope.goodsList = value
     }
-    }]);
+}

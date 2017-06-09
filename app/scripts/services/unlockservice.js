@@ -14,6 +14,7 @@ angular.module('newsubwayApp')
             getGoodsList: getGoodsList,
             getImageUrl:getImageUrl,
             isPay:isPay,
+            recycleByEquipment:recycleByEquipment,
         };
 
         function getQrCode(equipNumber, goodsId, uid, companyId, certificate) {
@@ -30,5 +31,8 @@ angular.module('newsubwayApp')
         function isPay(equipNumber) {
 
             return $http.get(Config.order_pay, { params: { "equinumber": equipNumber} })
+        }
+        function recycleByEquipment(uid,equipNumber){
+            return $http.get(Config.recycle, { params: { "equinumber": equipNumber,"user_id": uid} })
         }
     }]);
