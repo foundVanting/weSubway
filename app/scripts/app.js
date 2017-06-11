@@ -161,6 +161,8 @@ function Dialog($rootScope,$scope) {
         if(dialog.leftBtn){
             vm.leftBtn = dialog.leftBtn;
             vm.leftBtnCallBack = dialog.leftBtnCallBack;
+        }else {
+            vm.leftBtn = false;
         }
 
         if(dialog.rightBtn){
