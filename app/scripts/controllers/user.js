@@ -41,10 +41,9 @@ function UserCtrl($cookies, $location, $rootScope,userService) {
     }
 
     function logout() {
-
-        // userService.logout(vm.uid)
-        //     .then(logoutComplete)
-        //     .catch(failed)
+        userService.logout(vm.uid)
+            .then(logoutComplete)
+            .catch(failed)
         // todo 删除远程
         $location.path("/");
     }
