@@ -63,10 +63,10 @@ angular
                 resolve: resolver(true)
             })
             .when('/stats', {
-              templateUrl: 'views/stats.html',
-              controller: 'StatsCtrl',
-              controllerAs: 'stats',
-              resolve: resolver(true)
+                templateUrl: 'views/stats.html',
+                controller: 'StatsCtrl',
+                controllerAs: 'stats',
+                resolve: resolver(true)
             })
             .otherwise({
                 redirectTo: '/'
@@ -96,30 +96,58 @@ angular.isNull = function function_name(val) {
     return angular.isUndefined(val) || val === null || val === '';
 }
 
+String.prototype.format = function(args) {
+    var result = this;
+    if (arguments.length > 0) {
+        if (arguments.length == 1 && typeof(args) == "object") {
+            for (var key in args) {
+                if (args[key] != undefined) {
+                    var reg = new RegExp("({" + key + "})", "g");
+                    result = result.replace(reg, args[key]);
+                }
+            }
+        } else {
+            for (var i = 0; i < arguments.length; i++) {
+                if (arguments[i] != undefined) {
+                    //var reg = new RegExp("({[" + i + "]})", "g");//这个在索引大于9时会有问题，谢谢何以笙箫的指出
+                    　　　　　　　　　　　　
+                    var reg = new RegExp("({)" + i + "(})", "g");
+                    result = result.replace(reg, arguments[i]);
+                }
+            }
+        }
+    }
+    return result;
+}
 
 // TabBar
 
 angular.module('newsubwayApp')
     .controller('TabBar', TabBar);
 
-TabBar.$injector = ['$rootScope','$scope', '$location'];
+TabBar.$injector = ['$rootScope', '$scope', '$location'];
 
-function TabBar($rootScope,$scope, $location) {
+function TabBar($rootScope, $scope, $location) {
     var vm = this;
     vm.path = $location.path();
     vm.go = go;
-    vm.show=true
+    vm.show = true
 
     $scope.$on('$routeChangeSuccess', function(event, current, previous) {
         vm.path = current.originalPath;
     });
 
-    $scope.$on('$viewContentLoaded',function(){
+    $scope.$on('$viewContentLoaded', function() {
         console.log("$viewContentLoaded");
     });
 
     function go(p) {
         $location.path(p);
+        // var dialog = {
+        //     type: DialogType.SUCCESS,
+        //     message: '<span>{0}</span>  <img style="width: 100%; height: 100%;" src="{1}">'.format('一分钱10分钟','https://img6.bdstatic.com/img/image/smallpic/yuanjihuasuoluexiaotu.jpg')
+        // };
+        // $rootScope.$broadcast("dialogShow", dialog);
     }
 }
 
@@ -140,13 +168,18 @@ function TabBar($rootScope,$scope, $location) {
 // }
 // $rootScope.$broadcast("dialogShow",dialog);
 
-
+var DialogType = {
+    SUCCESS: "success",
+    INFO: 'info',
+    WARN: 'warn',
+    WAITING: 'waiting'
+};
 angular.module('newsubwayApp')
     .controller('Dialog', Dialog);
 
-Dialog.$injector = ['$rootScope','$scope'];
+Dialog.$injector = ['$rootScope', '$scope'];
 
-function Dialog($rootScope,$scope) {
+function Dialog($rootScope, $scope) {
     var vm = this;
     vm.show = false;
 
@@ -156,16 +189,17 @@ function Dialog($rootScope,$scope) {
     $scope.$on('dialogShow', function(event, dialog) {
         vm.show = true;
         dialog = dialog || {};
-        vm.title = dialog.title || "警告";
+        // vm.title = dialog.title || "警告";
+        vm.type = dialog.type || DialogType.WARN;
         vm.message = dialog.message || "";
-        if(dialog.leftBtn){
+        if (dialog.leftBtn) {
             vm.leftBtn = dialog.leftBtn;
             vm.leftBtnCallBack = dialog.leftBtnCallBack;
-        }else {
+        } else {
             vm.leftBtn = false;
         }
 
-        if(dialog.rightBtn){
+        if (dialog.rightBtn) {
             vm.rightBtn = dialog.rightBtn;
             vm.rightBtnCallBack = dialog.rightBtnCallBack;
         } else {
@@ -175,11 +209,11 @@ function Dialog($rootScope,$scope) {
 
     function leftBtnClick() {
         var r = true;
-        if(vm.leftBtnCallBack){
+        if (vm.leftBtnCallBack) {
             r = vm.leftBtnCallBack();
         }
 
-        if(r){
+        if (r) {
             vm.show = false;
         }
 
@@ -187,11 +221,11 @@ function Dialog($rootScope,$scope) {
 
     function rightBtnClick() {
         var r = true;
-        if(vm.rightBtnCallBack){
+        if (vm.rightBtnCallBack) {
             r = vm.rightBtnCallBack();
         }
 
-        if(r){
+        if (r) {
             vm.show = false;
         }
 

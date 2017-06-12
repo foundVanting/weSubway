@@ -77,3 +77,6 @@
     bottom: 100px;
     z-index: 1000
 }
+.weui-icon_msg, .weui-icon_msg-primary {
+    font-size: 3.5rem;
+}
