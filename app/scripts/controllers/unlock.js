@@ -162,7 +162,7 @@ function UnlockCtrl ($scope,$cookies, unlockService,$location,$http,$interval,$r
                         $scope.certificate='';
                         $scope.showCamera=true
                         var dialog = {
-                            "title":"成功",
+                            'type':'success',
                             "message":$scope.equipNumber+'支付成功',
                             "rightBtn":"确定",
                         }
