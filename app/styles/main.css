@@ -80,3 +80,15 @@
 .weui-icon_msg, .weui-icon_msg-primary {
     font-size: 3.5rem;
 }
+
+@keyframes rotate {
+  from {
+      transform:rotate(0deg);
+  } to {
+      transform:rotate(720deg);
+  }
+}
+
+.refreshing {
+    animation: 3s rotate;
+}

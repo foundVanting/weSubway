@@ -10,9 +10,9 @@
 angular.module('newsubwayApp')
     .controller('MainCtrl', MainCtrl);
     
-MainCtrl.$injector = ['$scope', '$cookies', 'mainService','$rootScope','$location'];
+MainCtrl.$injector = ['$scope', '$cookies', 'mainService','$rootScope','$location','$timeout'];
 
-function MainCtrl($scope, $cookies, mainService,$rootScope,$location) {
+function MainCtrl($scope, $cookies, mainService,$rootScope,$location,$timeout) {
     $scope.uid = $cookies.getObject("user").id;
     $scope.status = 3;
     $scope.imageShowStatus=false;
@@ -147,6 +147,8 @@ function MainCtrl($scope, $cookies, mainService,$rootScope,$location) {
         }else {
             $scope.more =true
         }
+
+        
     }
 
     function ordersFailed(error) {
@@ -157,6 +159,7 @@ function MainCtrl($scope, $cookies, mainService,$rootScope,$location) {
             "rightBtn":"确定",
         }
         $rootScope.$broadcast("dialogShow",dialog);
+
         return
 
     }
@@ -168,6 +171,9 @@ function MainCtrl($scope, $cookies, mainService,$rootScope,$location) {
         getOrders();
     }
     function refresh() {
+        $scope.refreshing = true;
+        
+        $timeout(function(){$scope.refreshing = false;},3000);
         $scope.page =1;
         getOrders();
     }
