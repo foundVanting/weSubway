@@ -117,6 +117,7 @@ String.prototype.format = function(args) {
             }
         }
     }
+    console.log(result);
     return result;
 }
 
@@ -172,7 +173,8 @@ var DialogType = {
     SUCCESS: "success",
     INFO: 'info',
     WARN: 'warn',
-    WAITING: 'waiting'
+    WAITING: 'waiting',
+    HIDDEN:'hidden'
 };
 angular.module('newsubwayApp')
     .controller('Dialog', Dialog);

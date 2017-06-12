@@ -15,7 +15,7 @@ MainCtrl.$injector = ['$scope', '$cookies', 'mainService','$rootScope','$locatio
 function MainCtrl($scope, $cookies, mainService,$rootScope,$location) {
     $scope.uid = $cookies.getObject("user").id;
     $scope.status = 3;
-    $scope.imageShowStatus=false;
+    // $scope.imageShowStatus=false;
 
     $scope.page =1;
     $scope.more = false;
@@ -29,7 +29,7 @@ function MainCtrl($scope, $cookies, mainService,$rootScope,$location) {
     $scope.recycle = recycle;
     $scope.loadMore= loadMore;
     $scope.showImage = showImage;
-    $scope.hideImage= hideImage;
+    // $scope.hideImage= hideImage;
     $scope.refresh= refresh;
     $scope.reused= reused;
 
@@ -43,10 +43,10 @@ function MainCtrl($scope, $cookies, mainService,$rootScope,$location) {
 
 
     }
-    function hideImage() {
-        $scope.imageUrl = '';
-        $scope.imageShowStatus = false;
-    }
+    // function hideImage() {
+    //     $scope.imageUrl = '';
+    //     $scope.imageShowStatus = false;
+    // }
 
     function loadMore() {
         if ($scope.busy) return;
@@ -99,7 +99,13 @@ function MainCtrl($scope, $cookies, mainService,$rootScope,$location) {
     }
     function showImage(url) {
         $scope.imageUrl = url;
-        $scope.imageShowStatus = true;
+        // $scope.imageShowStatus = true;
+
+        var dialog = {
+            type: DialogType.HIDDEN,
+            message: '<img class="dialog_img" src="{0}">'.format(url)
+        };
+        $rootScope.$broadcast("dialogShow", dialog);
     }
     function getOrders() {
         if (angular.isNull($scope.uid) || angular.isNull($scope.status)) {

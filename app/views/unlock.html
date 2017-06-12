@@ -50,30 +50,31 @@
               <a class="weui-btn weui-btn_primary"  ng-click="getQrCode()">扫码付款</a>
         </div>
     </div>
-    <div  class="js_dialog" style="opacity: 1;" ng-if="bigPhoto">
-        <div class="weui-mask"></div>
-        <div class="weui-dialog">
-            <div class="weui-dialog__bd">
-                <img style="width: 100%; height: 100%;" ng-src="{{certificate}}">
-            </div>
-            <div class="weui-dialog__ft">
-                <a class="weui-dialog__btn weui-dialog__btn_primary" ng-click="setBigPhoto(false) ">关闭</a>
-            </div>
-        </div>
-    </div>
 
-    <div  class="js_dialog" style="opacity: 1;" ng-if="QrCodeImage">
-        <div class="weui-mask"></div>
-        <div class="weui-dialog">
-            <div class="weui-dialog__bd">
-                <span>{{ goodsBody}}</span>
-                <img style="width: 100%; height: 100%;" ng-src="{{QrCodeImage}}">
-            </div>
-            <div class="weui-dialog__ft">
-                <a class="weui-dialog__btn weui-dialog__btn_primary" href="javascript:;" ng-click="setQrCodeImage(false)">确定</a>
-            </div>
-        </div>
-    </div>
+    <!--<div  class="js_dialog" style="opacity: 1;" ng-if="bigPhoto">-->
+        <!--<div class="weui-mask"></div>-->
+        <!--<div class="weui-dialog">-->
+            <!--<div class="weui-dialog__bd">-->
+                <!--<img style="width: 100%; height: 100%;" ng-src="{{certificate}}">-->
+            <!--</div>-->
+            <!--<div class="weui-dialog__ft">-->
+                <!--<a class="weui-dialog__btn weui-dialog__btn_primary" ng-click="setBigPhoto(false) ">关闭</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div  class="js_dialog" style="opacity: 1;" ng-if="QrCodeImage">-->
+        <!--<div class="weui-mask"></div>-->
+        <!--<div class="weui-dialog">-->
+            <!--<div class="weui-dialog__bd">-->
+                <!--<span>{{ goodsBody}}</span>-->
+                <!--<img style="width: 100%; height: 100%;" ng-src="{{QrCodeImage}}">-->
+            <!--</div>-->
+            <!--<div class="weui-dialog__ft">-->
+                <!--<a class="weui-dialog__btn weui-dialog__btn_primary" href="javascript:;" ng-click="setQrCodeImage(false)">确定</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
     <div id="loadingToast" style="opacity: 1;" ng-show="showLoading">
         <div class="weui-mask_transparent"></div>
@@ -82,16 +83,5 @@
             <p class="weui-toast__content">{{ loadingMsg||"数据加载中" }}</p>
         </div>
     </div>
-
-    <!--<div ng-show="showError">-->
-        <!--<div class="weui-mask"></div>-->
-        <!--<div class="weui-dialog">-->
-            <!--<div class="weui-dialog__hd"><strong class="weui-dialog__title">错误</strong></div>-->
-            <!--<div class="weui-dialog__bd">{{errorMessage}}</div>-->
-            <!--<div class="weui-dialog__ft">-->
-                <!--<a ng-click="showError=false;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
 
 </div>
