@@ -59,7 +59,8 @@
                 <div class="weui-form-preview__ft" ng-if="status ==3">
                     <a class="weui-form-preview__btn weui-form-preview__btn_primary"  ng-click="recycle(order.id)">回收</a>
                 </div>
-                <div class="weui-form-preview__ft" ng-if="status ==4">
+                <!--未使用不能再次使用-->
+                <div class="weui-form-preview__ft" ng-if="status ==4 && order.canRecycle">
                     <a class="weui-form-preview__btn weui-form-preview__btn_primary"  ng-click="reused(order.quinumber)">再次使用</a>
                 </div>
             </div>
