@@ -45,7 +45,7 @@ function UserCtrl($cookies, $location, $rootScope,userService) {
             .then(logoutComplete)
             .catch(failed)
         // todo 删除远程
-        $location.path("/");
+        $location.path("/login");
     }
     function failed(error) {
         console.log(error);
