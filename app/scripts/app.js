@@ -68,6 +68,11 @@ angular
                 controllerAs: 'stats',
                 resolve: resolver(true)
             })
+            .when('/passenger', {
+              templateUrl: 'views/passenger.html',
+              controller: 'PassengerCtrl',
+              controllerAs: 'passenger'
+            })
             .otherwise({
                 redirectTo: '/'
             });
@@ -86,6 +91,9 @@ Config.upload_image_url = Config.url_prefix + "/image/url";
 Config.order_pay = Config.url_prefix + "/equipment/pay";
 Config.stats = Config.url_prefix + "/stats";
 Config.logout = Config.url_prefix + "/admin/logout";
+Config.underLine = '_';
+Config.checkTrainmanNumber = Config.url_prefix + "/check/trainman";
+Config.createJsSdkOrder = Config.url_prefix + "/order";
 
 
 

@@ -1,0 +1,39 @@
+<div class="weui-wepay-pay-select">
+    <div class="weui-wepay-pay-select__hd">
+        <h1 class="weui-wepay-pay-select__title">选择金额付款</h1>
+        <p class="weui-wepay-pay-select__info">支付金额给商户</p>
+    </div>
+    <div class="weui-wepay-pay-select__bd">
+        <ul class="weui-wepay-pay-select__element">
+            <li class="weui-wepay-pay-select__li" ng-repeat="goods in goodsList">
+                <a href="javascript:;" class="weui-wepay-pay-select__item" ng-class='{ "weui-wepay-pay-select__item_on":goodsId==goods.id}'  ng-click="setGoods(goods.id,goods.body)">{{ goods.body }}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="weui-wepay-pay-select__hd">
+        <h1 class="weui-wepay-pay-select__title">输入乘务员工号</h1>
+        <p class="weui-wepay-pay-select__info">输入乘务员工号</p>
+    </div>
+
+    <div class="weui-wepay-pay-select__bd">
+        <div class="wepayinput">
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="text" placeholder="输入乘务员工号" ng-model="trainmanNumber" ng-blur="checkTrainmanNumber()">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="weui-cells__title"></div>
+    <div class="weui-wepay-pay-select__ft">
+        <div class="weui-wepay-pay__btn">
+            <a class="weui-btn weui-btn_primary" ng-click="pay()">立即支付</a>
+        </div>
+        <!--<p class="weui-wepay-pay__info">点击上面的“立即支付”按钮，即表示你同意<a href="javascript:;" class="weui-wepay-color-blue">条款声明</a>。</p>-->
+    </div>
+</div>
+<div class="weui-wepay-logos weui-wepay-logos_ft">
+    <img src="https://act.weixin.qq.com/static/cdn/img/wepayui/0.1.1/wepay_logo_default_gray.svg" alt="" height="16">
+</div>

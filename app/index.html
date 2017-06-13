@@ -16,7 +16,10 @@
     <link rel="stylesheet" href="//res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
     <link rel="stylesheet" href="styles/iconfont.css">
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/example.css">
+    <!--<link rel="stylesheet" href="styles/example.css">-->
+    <link rel="stylesheet" href="    https://act.weixin.qq.com/static/cdn/css/wepayui/0.1.1/wepayui.min.css">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/wepayui.css">
     <!-- endbuild -->
 </head>
 
@@ -30,24 +33,24 @@
                 <div class="page__bd" style="height: 100%;">
                     <div class="weui-tab">
                         <div class="weui-tab__panel" ng-view> </div>
-                        <div class="weui-tabbar" ng-controller="TabBar as tb" ng-show="tb.path != '/login'">
-                            <a ng-click="tb.go('/')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/"}'>
-                                <i class="iconfont icon-unlock"></i>
-                                <p class="weui-tabbar__label">解锁</p>
-                            </a>
-                            <a ng-click="tb.go('/log')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/log"}'>
-                                <i class="iconfont icon-jilu"></i>
-                                <p class="weui-tabbar__label">回收</p>
-                            </a>
-                            <a ng-click="tb.go('/stats')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/stats"}'>
-                                <i class="iconfont icon-tongji"></i>
-                                <p class="weui-tabbar__label">统计</p>
-                            </a>
-                            <a ng-click="tb.go('/user')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/user"}'>
-                                <i class="iconfont icon-jilu"></i>
-                                <p class="weui-tabbar__label">个人中心</p>
-                            </a>
-                        </div>
+                        <!--<div class="weui-tabbar" ng-controller="TabBar as tb" ng-show="tb.path != '/login'">-->
+                            <!--<a ng-click="tb.go('/')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/"}'>-->
+                                <!--<i class="iconfont icon-unlock"></i>-->
+                                <!--<p class="weui-tabbar__label">解锁</p>-->
+                            <!--</a>-->
+                            <!--<a ng-click="tb.go('/log')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/log"}'>-->
+                                <!--<i class="iconfont icon-jilu"></i>-->
+                                <!--<p class="weui-tabbar__label">回收</p>-->
+                            <!--</a>-->
+                            <!--<a ng-click="tb.go('/stats')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/stats"}'>-->
+                                <!--<i class="iconfont icon-tongji"></i>-->
+                                <!--<p class="weui-tabbar__label">统计</p>-->
+                            <!--</a>-->
+                            <!--<a ng-click="tb.go('/user')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/user"}'>-->
+                                <!--<i class="iconfont icon-jilu"></i>-->
+                                <!--<p class="weui-tabbar__label">个人中心</p>-->
+                            <!--</a>-->
+                        <!--</div>-->
                     </div>
                 </div>
             </div>
@@ -73,22 +76,6 @@
             </div>
         </div>
     </div>
-    <!--<div class="container">-->
-    <!--<div class="weui-tab">-->
-    <!--<div class="weui-tab__panel" ng-view>-->
-    <!--</div>-->
-    <!--<div class="weui-tabbar" ng-controller="TabBar as tb" ng-show="tb.path != '/login'">-->
-    <!--<a ng-click="tb.go('/')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/"}'>-->
-    <!--<i class="iconfont icon-unlock"></i>-->
-    <!--<p class="weui-tabbar__label">解锁</p>-->
-    <!--</a>-->
-    <!--<a ng-click="tb.go('/log')" class="weui-tabbar__item" ng-class='{ "weui-bar__item_on":tb.path=="/log"}'>-->
-    <!--<i class="iconfont icon-jilu"></i>-->
-    <!--<p class="weui-tabbar__label">记录</p>-->
-    <!--</a>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
@@ -117,6 +104,8 @@
     <script src="scripts/controllers/stats.js"></script>
     <script src="scripts/services/statsservice.js"></script>
     <script src="scripts/services/userservice.js"></script>
+    <script src="scripts/controllers/passenger.js"></script>
+    <script src="scripts/services/passengerservice.js"></script>
     <!-- endbuild -->
 </body>
 
