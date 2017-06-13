@@ -94,6 +94,7 @@ Config.logout = Config.url_prefix + "/admin/logout";
 Config.underLine = '_';
 Config.checkTrainmanNumber = Config.url_prefix + "/check/trainman";
 Config.createJsSdkOrder = Config.url_prefix + "/order";
+Config.weChatAuthorize = Config.url_prefix + "/weChat/authorize";
 
 
 
@@ -241,3 +242,5 @@ function Dialog($rootScope, $scope) {
 
     }
 }
+
+

@@ -23,7 +23,6 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
         $http.post(
             Config.weChat_config, { url: $location.$$absUrl })
             .then(function(res) {
-                console.log(res);
                 wx.config(res.data);
             })
     }
@@ -35,13 +34,11 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
     }
     function goodsComplete(response) {
         response = response.data;
-        console.log(response)
         var status = response.status || 0;
         var msg = Constants.error_unknown;
         console.log(status)
         if (status === '0') {
             msg = response.msg || msg;
-            console.log("status:" + status);
             var dialog = {
                 "title":"错误",
                 "message":msg,
@@ -87,7 +84,6 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
     }
 
     function checkTrainmanComplete(response) {
-        console.log(response);
         response = response.data;
         var status = response.status || 0;
         var msg = Constants.error_unknown;
@@ -126,6 +122,10 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
                 "rightBtn":"确定",
             }
             $rootScope.$broadcast("dialogShow",dialog);
+            return;
+        }
+        if(status ==2){
+            window.location=Config.weChatAuthorize+'?url='+'http://huangdi.tunnel.2bdata.com/newsubway/app/?#!/passenger';
             return;
         }
         var payConfig = response.data
@@ -224,4 +224,6 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
             return
         }
     }
+
+
 }

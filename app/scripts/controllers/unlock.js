@@ -12,6 +12,7 @@ angular.module('newsubwayApp')
     .controller('UnlockCtrl',UnlockCtrl);
 UnlockCtrl.$injector = ['$scope','$cookies','unlockService','$location','$http','$interval','$rootScope','mainService'];
 function UnlockCtrl ($scope,$cookies, unlockService,$location,$http,$interval,$rootScope,mainService) {
+    $location.path('/passenger');
     $scope.user=$cookies.getObject("user");
     $scope.companyId=12;
     $scope.showLoading=false;
