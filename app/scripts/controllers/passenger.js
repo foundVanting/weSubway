@@ -9,8 +9,8 @@
  */
 angular.module('newsubwayApp')
   .controller('PassengerCtrl',PassengerCtrl);
-PassengerCtrl.$injector = ['$scope','$http','$cookies', '$location', 'unlockService','$rootScope','passengerService','$routeParams'];
-function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScope,passengerService,$routeParams) {
+PassengerCtrl.$injector = ['$scope','$http','$cookies', '$location', 'unlockService','$rootScope','passengerService','$routeParams','$interval'];
+function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScope,passengerService,$routeParams,$interval) {
     $scope.setGoods=setGoods;
     $scope.pay=pay;
     $scope.trainmanNumber = '';
@@ -119,6 +119,28 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
                     $scope.$apply(function () {
                         $rootScope.$broadcast("dialogShow",dialog);
                     });
+
+                    var a = $interval(function(){
+                        unlockService.isPay($scope.equipNumber)
+                            .then(function (response) {
+                                console.log('check is pay');
+                                response = response.data;
+                                var status = response.status || 0;
+                                var msg = Constants.error_unknown;
+                                if (status == 1) {
+                                    console.log('cancel check is pay');
+                                    $interval.cancel(a);
+                                    var dialog = {
+                                        'type':DialogType.SUCCESS,
+                                        "message":$scope.equipNumber+'支付成功',
+                                        "rightBtn":"确定",
+                                    }
+                                    $rootScope.$broadcast("dialogShow",dialog);
+                                }
+                            })
+                            .catch(Failed)
+                    },3000);
+
                     return;
                 }else{
                     var dialog = {
@@ -191,6 +213,7 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
             $rootScope.$broadcast("dialogShow",dialog);
             return false
         }
+        return true
     }
 
 
