@@ -68,13 +68,13 @@ angular
                 controllerAs: 'stats',
                 resolve: resolver(true)
             })
-            .when('/passenger', {
+            .when('/passenger/:equipNumber', {
               templateUrl: 'views/passenger.html',
               controller: 'PassengerCtrl',
               controllerAs: 'passenger'
             })
             .otherwise({
-                redirectTo: '/passenger'
+                redirectTo: '/passenger/noEquip'
             });
     });
 

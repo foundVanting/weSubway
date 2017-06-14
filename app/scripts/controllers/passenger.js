@@ -9,12 +9,22 @@
  */
 angular.module('newsubwayApp')
   .controller('PassengerCtrl',PassengerCtrl);
-PassengerCtrl.$injector = ['$scope','$http','$cookies', '$location', 'unlockService','$rootScope','passengerService'];
-function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScope,passengerService) {
+PassengerCtrl.$injector = ['$scope','$http','$cookies', '$location', 'unlockService','$rootScope','passengerService','$routeParams'];
+function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScope,passengerService,$routeParams) {
     $scope.setGoods=setGoods;
     $scope.pay=pay;
     $scope.trainmanNumber = '';
-    $scope.equipNumber = 'A00001';
+    // $scope.equipNumber = 'A00001';
+    $scope.equipNumber =$routeParams.equipNumber;
+    if($scope.equipNumber ==="noEquip"){
+        var dialog = {
+            "message":'少年。打开方式不对吧',
+            "rightBtn":"确定",
+        }
+        $rootScope.$broadcast("dialogShow",dialog);
+        return
+    }
+    console.log($routeParams.equipNumber)
     $scope.companyId=12;
     $scope.uid = '';
     wechatConfig();
@@ -35,7 +45,6 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
         response = response.data;
         var status = response.status || 0;
         var msg = Constants.error_unknown;
-        console.log(status)
         if (status === '0') {
             msg = response.msg || msg;
             var dialog = {
