@@ -78,7 +78,9 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
     }
 
     function pay() {
-        checkPayParam();
+        var check =checkPayParam();
+        if(!check) return
+
         var productId = $scope.goodsId+Config.underLine+$scope.companyId+Config.underLine+$scope.equipNumber+Config.underLine+$scope.trainmanNumber;
         passengerService.createJsSdkOrder(productId)
             .then(jsSdkComplete)
@@ -111,7 +113,7 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
                 if(res.errMsg == "chooseWXPay:ok"){
                     var dialog = {
                         'type':DialogType.SUCCESS,
-                        "message":$scope.equipNumber+'支付成功',
+                        "message":'设备'+$scope.equipNumber+'支付成功',
                         "rightBtn":"确定",
                     }
                     $scope.$apply(function () {
@@ -160,7 +162,8 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
                 "rightBtn":"确定",
             }
             $rootScope.$broadcast("dialogShow",dialog);
-            return
+            alert(1)
+            return false
         }
         if (angular.isNull($scope.equipNumber)){
             var dialog = {
@@ -169,7 +172,7 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
                 "rightBtn":"确定",
             }
             $rootScope.$broadcast("dialogShow",dialog);
-            return
+            return false
         }
         if (angular.isNull($scope.goodsId)){
             var dialog = {
@@ -178,7 +181,7 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
                 "rightBtn":"确定",
             }
             $rootScope.$broadcast("dialogShow",dialog);
-            return
+            return false
         }
         if (angular.isNull($scope.companyId)){
             var dialog = {
@@ -187,7 +190,7 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
                 "rightBtn":"确定",
             }
             $rootScope.$broadcast("dialogShow",dialog);
-            return
+            return false
         }
     }
 
