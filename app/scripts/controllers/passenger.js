@@ -15,7 +15,7 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
     $scope.checkTrainmanNumber=checkTrainmanNumber;
     $scope.pay=pay;
     $scope.trainmanNumber = '';
-    $scope.equipNumber = 'A00000';
+    $scope.equipNumber = 'A00001';
     $scope.companyId=12;
     $scope.uid = '';
     wechatConfig();
@@ -173,9 +173,6 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
                 return;
             }
         });
-
-
-
     }
     function checkPayParam() {
         if (angular.isNull($scope.trainmanNumber)){
