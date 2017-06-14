@@ -135,7 +135,9 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
                     "message":'取消支付',
                     "rightBtn":"确定",
                 }
-                $rootScope.$broadcast("dialogShow",dialog);
+                $scope.$apply(function () {
+                    $rootScope.$broadcast("dialogShow",dialog);
+                });
                 return;
             },
             fail: function(res){
@@ -143,7 +145,9 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
                     "message":'支付失败',
                     "rightBtn":"确定",
                 }
-                $rootScope.$broadcast("dialogShow",dialog);
+                $scope.$apply(function () {
+                    $rootScope.$broadcast("dialogShow",dialog);
+                });
                 return;
             }
         });

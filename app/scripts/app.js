@@ -227,7 +227,7 @@ function Dialog($rootScope, $scope) {
         if (r) {
             vm.show = false;
         }
-
+        return
     }
 
     function rightBtnClick() {
@@ -239,7 +239,7 @@ function Dialog($rootScope, $scope) {
         if (r) {
             vm.show = false;
         }
-
+        return
     }
 }
 
