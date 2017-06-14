@@ -111,10 +111,12 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
                 if(res.errMsg == "chooseWXPay:ok"){
                     var dialog = {
                         'type':DialogType.SUCCESS,
-                        "message":'支付成功',
+                        "message":$scope.equipNumber+'支付成功',
                         "rightBtn":"确定",
                     }
-                    $rootScope.$broadcast("dialogShow",dialog);
+                    $scope.$apply(function () {
+                        $rootScope.$broadcast("dialogShow",dialog);
+                    });
                     return;
                 }else{
                     var dialog = {
