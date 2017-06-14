@@ -162,7 +162,6 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
                 "rightBtn":"确定",
             }
             $rootScope.$broadcast("dialogShow",dialog);
-            alert(1)
             return false
         }
         if (angular.isNull($scope.equipNumber)){
