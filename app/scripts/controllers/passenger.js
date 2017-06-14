@@ -12,7 +12,6 @@ angular.module('newsubwayApp')
 PassengerCtrl.$injector = ['$scope','$http','$cookies', '$location', 'unlockService','$rootScope','passengerService'];
 function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScope,passengerService) {
     $scope.setGoods=setGoods;
-    $scope.checkTrainmanNumber=checkTrainmanNumber;
     $scope.pay=pay;
     $scope.trainmanNumber = '';
     $scope.equipNumber = 'A00001';
@@ -68,42 +67,10 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
     function setGoodsList(value) {
         $scope.goodsList = value
     }
-    function checkTrainmanNumber() {
-        if (angular.isNull($scope.trainmanNumber)){
-            var dialog = {
-                "type":DialogType.WARN,
-                "message":'乘务员工号不能为空',
-                "rightBtn":"确定",
-            }
-            $rootScope.$broadcast("dialogShow",dialog);
-            return
-        }
-        passengerService.checkTrainman($scope.trainmanNumber)
-            .then(checkTrainmanComplete)
-            .catch(Failed)
-    }
-
-    function checkTrainmanComplete(response) {
-        response = response.data;
-        var status = response.status || 0;
-        var msg = Constants.error_unknown;
-
-        if (status == 0) {
-            $scope.uid = '';
-            msg = response.msg || msg;
-            var dialog = {
-                "message":msg,
-                "rightBtn":"确定",
-            }
-            $rootScope.$broadcast("dialogShow",dialog);
-            return;
-        }
-        $scope.uid = response.data;
-    }
 
     function pay() {
         checkPayParam();
-        var productId = $scope.goodsId+Config.underLine+$scope.companyId+Config.underLine+$scope.equipNumber+Config.underLine+$scope.uid;
+        var productId = $scope.goodsId+Config.underLine+$scope.companyId+Config.underLine+$scope.equipNumber+Config.underLine+$scope.trainmanNumber;
         passengerService.createJsSdkOrder(productId)
             .then(jsSdkComplete)
             .catch(Failed)
@@ -122,10 +89,6 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
                 "rightBtn":"确定",
             }
             $rootScope.$broadcast("dialogShow",dialog);
-            return;
-        }
-        if(status ==2){
-            window.location=Config.weChatAuthorize+'?url='+'http://huangdi.tunnel.2bdata.com/newsubway/app/?#!/passenger';
             return;
         }
         var payConfig = response.data
@@ -179,15 +142,6 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
             var dialog = {
                 "type":DialogType.WARN,
                 "message":'乘务员工号不能为空',
-                "rightBtn":"确定",
-            }
-            $rootScope.$broadcast("dialogShow",dialog);
-            return
-        }
-        if (angular.isNull($scope.uid)){
-            var dialog = {
-                "type":DialogType.WARN,
-                "message":'乘务员工号错误',
                 "rightBtn":"确定",
             }
             $rootScope.$broadcast("dialogShow",dialog);

@@ -74,7 +74,7 @@ angular
               controllerAs: 'passenger'
             })
             .otherwise({
-                redirectTo: '/'
+                redirectTo: '/passenger'
             });
     });
 
