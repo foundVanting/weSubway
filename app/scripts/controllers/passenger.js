@@ -121,18 +121,17 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
                     });
 
                     var a = $interval(function(){
-                        unlockService.isPay($scope.equipNumber)
+                        unlockService.orderStatus($scope.equipNumber)
                             .then(function (response) {
                                 console.log('check is pay');
                                 response = response.data;
                                 var status = response.status || 0;
                                 var msg = Constants.error_unknown;
-                                if (status == 1) {
-                                    console.log('cancel check is pay');
+                                if (status == '2') {
                                     $interval.cancel(a);
                                     var dialog = {
                                         'type':DialogType.SUCCESS,
-                                        "message":$scope.equipNumber+'支付成功',
+                                        "message":$scope.equipNumber+'开始使用',
                                         "rightBtn":"确定",
                                     }
                                     $rootScope.$broadcast("dialogShow",dialog);

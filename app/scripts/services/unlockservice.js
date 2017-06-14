@@ -14,6 +14,7 @@ angular.module('newsubwayApp')
             getGoodsList: getGoodsList,
             getImageUrl:getImageUrl,
             isPay:isPay,
+            orderStatus:orderStatus,
         };
 
         function getQrCode(equipNumber, goodsId, uid, companyId, certificate) {
@@ -30,5 +31,8 @@ angular.module('newsubwayApp')
         function isPay(equipNumber) {
 
             return $http.get(Config.order_pay, { params: { "equinumber": equipNumber} })
+        }
+        function orderStatus(equipNumber) {
+            return $http.get(Config.order_status, { params: { "equinumber": equipNumber} })
         }
     }]);
