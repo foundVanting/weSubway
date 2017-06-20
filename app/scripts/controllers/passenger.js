@@ -24,9 +24,10 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
         $rootScope.$broadcast("dialogShow",dialog);
         return
     }
-    console.log($routeParams.equipNumber)
+    // console.log($routeParams.equipNumber)
     $scope.companyId=12;
-    $scope.uid = '';
+    $scope.uid = ''
+    $scope.discount = 10;
     wechatConfig();
     function wechatConfig() {
         $http.post(
@@ -35,7 +36,30 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
                 wx.config(res.data);
             })
     }
+    getDiscount();
     getGoodsList();
+    function discountComplete(response) {
+        response = response.data;
+        var status = response.status || 0;
+        var msg = Constants.error_unknown;
+        if (status === '0') {
+            msg = response.msg || msg;
+            var dialog = {
+                "title":"错误",
+                "message":msg,
+                "rightBtn":"确定",
+            }
+            $rootScope.$broadcast("dialogShow",dialog);
+            return;
+        }
+        $scope.discount = response.data;
+    }
+
+    function getDiscount() {
+        passengerService.getDiscount()
+            .then(discountComplete)
+            .catch(Failed);
+    }
     function getGoodsList() {
         unlockService.getGoodsList(11)
             .then(goodsComplete)
@@ -94,7 +118,7 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
 
         if (status == 0) {
             msg = response.msg || msg;
-            console.log("status:" + status);
+            // console.log("status:" + status);
             var dialog = {
                 "message":msg,
                 "rightBtn":"确定",
@@ -123,7 +147,7 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
                     var a = $interval(function(){
                         unlockService.orderStatus($scope.equipNumber)
                             .then(function (response) {
-                                console.log('check is pay');
+                                console.log('check be used');
                                 response = response.data;
                                 var status = response.status || 0;
                                 var msg = Constants.error_unknown;

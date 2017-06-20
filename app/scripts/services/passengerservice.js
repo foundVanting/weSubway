@@ -14,10 +14,14 @@ function passengerService($http) {
 
     var service = {
         createJsSdkOrder: createJsSdkOrder,
+        getDiscount:getDiscount,
     };
     return service;
 
     function createJsSdkOrder(products) {
         return $http.post(Config.createJsSdkOrder, {products: products})
+    }
+    function getDiscount() {
+        return $http.get(Config.order_discount)
     }
 }

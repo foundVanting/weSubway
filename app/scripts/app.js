@@ -96,6 +96,7 @@ Config.checkTrainmanNumber = Config.url_prefix + "/check/trainman";
 Config.createJsSdkOrder = Config.url_prefix + "/order";
 Config.weChatAuthorize = Config.url_prefix + "/weChat/authorize";
 Config.order_status = Config.url_prefix + "/equipment/status";
+Config.order_discount = Config.url_prefix + "/order/discount";
 
 
 
