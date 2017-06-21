@@ -1,5 +1,8 @@
 <div class="weui-wepay-pay-select">
 
+    <div class="weui-wepay-pay-select__hd" ng-cloak ng-show="discount !== 10">
+        <h1 class="weui-wepay-pay-select__title"><span class="discount"> {{discount }} 折优惠啦</span></h1>
+    </div>
     <div class="weui-wepay-pay-select__hd">
         <h1 class="weui-wepay-pay-select__title">选择套餐</h1>
         <p class="weui-wepay-pay-select__info">{{equipNumber }}</p>
@@ -27,9 +30,9 @@
             </div>
         </div>
     </div>
-    <div class="weui-wepay-pay-select__hd" ng-cloak ng-show="discount !== 10">
-        <p class="weui-wepay-pay-select__info"><span class="discount"> {{discount }} 折优惠啦</span></p>
-    </div>
+    <!--<div class="weui-wepay-pay-select__hd" ng-cloak ng-show="discount !== 10">-->
+        <!--<p class="weui-wepay-pay-select__info"><span class="discount"> {{discount }} 折优惠啦</span></p>-->
+    <!--</div>-->
     <div class="weui-cells__title"></div>
     <div class="weui-wepay-pay-select__ft">
         <div class="weui-wepay-pay__btn">
