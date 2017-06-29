@@ -25,7 +25,6 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
         return
     }
     // console.log($routeParams.equipNumber)
-    $scope.companyId=12;
     $scope.uid = ''
     $scope.discount = 10;
     wechatConfig();
@@ -61,7 +60,7 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
             .catch(Failed);
     }
     function getGoodsList() {
-        unlockService.getGoodsList(11)
+        unlockService.getGoodsList(11)//todo 写死了
             .then(goodsComplete)
             .catch(Failed);
     }
@@ -105,7 +104,7 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
         var check =checkPayParam();
         if(!check) return
 
-        var productId = $scope.goodsId+Config.underLine+$scope.companyId+Config.underLine+$scope.equipNumber+Config.underLine+$scope.trainmanNumber;
+        var productId = $scope.goodsId+Config.underLine+$scope.equipNumber+Config.underLine+$scope.trainmanNumber;
         passengerService.createJsSdkOrder(productId)
             .then(jsSdkComplete)
             .catch(Failed)
@@ -219,15 +218,6 @@ function PassengerCtrl($scope,$http,$cookies, $location, unlockService,$rootScop
             return false
         }
         if (angular.isNull($scope.goodsId)){
-            var dialog = {
-                "type":DialogType.WARN,
-                "message":'套餐不能为空',
-                "rightBtn":"确定",
-            }
-            $rootScope.$broadcast("dialogShow",dialog);
-            return false
-        }
-        if (angular.isNull($scope.companyId)){
             var dialog = {
                 "type":DialogType.WARN,
                 "message":'套餐不能为空',
