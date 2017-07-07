@@ -1,21 +1,4 @@
 
-
-article blockquote {
-    border-width: 0 0 0 5px;
-    padding-left: 20px;
-    padding-right: 8px;
-    border-style: solid;
-    border-color: #ccc;
-}
-/*blockquote {*/
-    /*border-color: #ccc;*/
-    /*border-style: solid;*/
-    /*border-width: 0;*/
-    /*font-family: Georgia,Times,"Times New Roman",serif;*/
-    /*font-style: italic;*/
-    /*padding: 2px 0;*/
-/*}*/
-
 .weui-wepay-pay-select__li {
     width: 50%!important;
 }

@@ -1,4 +1,11 @@
 <!--<span ng-bind-html="answer"> </span>-->
-<article class="weui-article" ng-bind-html="answer">
+<style>
+    .container {
+        position: relative;
+    }
+</style>
+<h2><strong>{{ name }}</strong></h2>
+<br><hr>
+<article class="weui-article content" ng-bind-html="answer | trustedFilter">
 
 </article>

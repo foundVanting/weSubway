@@ -13,6 +13,7 @@ AnswerCtrl.$injector = ['$scope','$location', 'questionService','$rootScope','$r
 function AnswerCtrl($scope,$location, questionService,$rootScope,$routeParams) {
     $scope.questionId = $routeParams.questionId;
     $scope.answer = '';
+    $scope.name = '';
 
     questionService
         .getAnswer( $scope.questionId)
@@ -35,7 +36,9 @@ function AnswerCtrl($scope,$location, questionService,$rootScope,$routeParams) {
         if (angular.isNull(response.data.answer) ) {
             $scope.answer = '暂无答案';
         }
+            // $scope.answer = $sce.trustAsHtml(response.data.answer);
             $scope.answer = response.data.answer;
+            $scope.name = response.data.name;
     }
     function Failed(error) {
         var dialog = {
