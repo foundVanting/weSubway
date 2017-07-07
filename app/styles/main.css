@@ -1,3 +1,18 @@
+
+
+/*article blockquote {*/
+    /*border-left-width: 5px;*/
+    /*padding-left: 20px;*/
+    /*padding-right: 8px;*/
+/*}*/
+/*blockquote {*/
+    /*border-color: #ccc;*/
+    /*border-style: solid;*/
+    /*border-width: 0;*/
+    /*font-family: Georgia,Times,"Times New Roman",serif;*/
+    /*font-style: italic;*/
+    /*padding: 2px 0;*/
+/*}*/
 .discount{
     color:red;
 }

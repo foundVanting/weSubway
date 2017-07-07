@@ -18,6 +18,7 @@ angular
         'ngRoute',
         'ngSanitize',
         'ngTouch',
+        // 'hc.marked',
     ])
     .config(function($routeProvider) {
         //中间件 鉴权 用户是否登录
@@ -73,6 +74,16 @@ angular
               controller: 'PassengerCtrl',
               controllerAs: 'passenger'
             })
+            .when('/question', {
+              templateUrl: 'views/question.html',
+              controller: 'QuestionCtrl',
+              controllerAs: 'question'
+            })
+            .when('/answer/:questionId', {
+              templateUrl: 'views/answer.html',
+              controller: 'AnswerCtrl',
+              controllerAs: 'answer'
+            })
             .otherwise({
                 redirectTo: '/passenger/noEquip'
             });
@@ -97,6 +108,8 @@ Config.createJsSdkOrder = Config.url_prefix + "/order";
 Config.weChatAuthorize = Config.url_prefix + "/weChat/authorize";
 Config.order_status = Config.url_prefix + "/equipment/status";
 Config.order_discount = Config.url_prefix + "/order/discount";
+Config.questions = Config.url_prefix + "/questions";
+Config.answer = Config.url_prefix + "/answer";
 
 
 
