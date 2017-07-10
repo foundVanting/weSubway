@@ -19,8 +19,8 @@ function questionService($http) {
     return service;
 
 
-    function getQuestions() {
-        return $http.get(Config.questions);
+    function getQuestions(type) {
+        return $http.get(Config.questions,{params:{"type": type}});
     }
     function getAnswer(questionId) {
         return $http.get(Config.answer,{params:{"questionId": questionId}});

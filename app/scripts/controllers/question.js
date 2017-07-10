@@ -9,14 +9,14 @@
  */
 angular.module('newsubwayApp')
   .controller('QuestionCtrl',QuestionCtrl);
-QuestionCtrl.$injector = ['$scope','$location', 'questionService','$rootScope'];
-function QuestionCtrl($scope,$location, questionService,$rootScope) {
-
+QuestionCtrl.$injector = ['$scope','$location', 'questionService','$rootScope','$routeParams'];
+function QuestionCtrl($scope,$location, questionService,$rootScope,$routeParams) {
+    $scope.type = $routeParams.type;
     $scope.questions='';
     $scope.showDetail=showDetail;
 
     questionService
-        .getQuestions()
+        .getQuestions($scope.type)
         .then(questionsComplete)
         .catch(Failed);
     function showDetail(questionId) {

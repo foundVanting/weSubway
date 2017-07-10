@@ -79,7 +79,7 @@ angular
               controller: 'QuestionCtrl',
               controllerAs: 'question'
             })
-            .when('/answer/:questionId', {
+            .when('/answer/:questionId/:type', {
               templateUrl: 'views/answer.html',
               controller: 'AnswerCtrl',
               controllerAs: 'answer'
