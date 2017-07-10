@@ -17,6 +17,9 @@ body {
 .content h3{
     margin:15px 0 5.1px 0;
 }
+.content ul,.content ol{
+    padding: 0 0 0 40px;
+}
 .content h2{
     margin:13.18px 0 5.44px 0;
 }
