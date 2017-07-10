@@ -74,12 +74,12 @@ angular
               controller: 'PassengerCtrl',
               controllerAs: 'passenger'
             })
-            .when('/question', {
+            .when('/question/:type', {
               templateUrl: 'views/question.html',
               controller: 'QuestionCtrl',
               controllerAs: 'question'
             })
-            .when('/answer/:questionId/:type', {
+            .when('/answer/:questionId', {
               templateUrl: 'views/answer.html',
               controller: 'AnswerCtrl',
               controllerAs: 'answer'
